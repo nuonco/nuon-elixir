@@ -11,6 +11,7 @@ env:
   COMMIT_MESSAGE: "chore: update for api version ${{ inputs.version }}"
   GIT_USER_EMAIL: "<>"
   GIT_USER_NAME: "bot"
+  GH_TOKEN: ${{ github.token }}
 jobs:
   generate-sdk:
     name: Generate SDK
