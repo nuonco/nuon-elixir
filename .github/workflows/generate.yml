@@ -1,0 +1,31 @@
+---
+name: Generate SDK
+on:
+  workflow_dispatch:
+    inputs:
+      version: string
+env:
+  BRANCH_NAME: bot/update-for-api-${{ inputs.version }}
+  COMMIT_MESSAGE: chore: update for api version ${{ inputs.version }}
+jobs:
+  generate-sdk:
+    name: Generate SDK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create branch
+        run: |
+          git ch -b $BRANCH_NAME
+      - name: Generate SDK
+        run: |
+          ./scripts/generate.sh
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "$COMMIT_MESSAGE"
+          git push origin $BRANCH_NAME
+      - name: Open PR
+        run: |
+          gh pr create --title "$COMMIT_MESSAGE"
+          gh pr merge --auto --delete-branch --squash "$BRANCH_NAME"
