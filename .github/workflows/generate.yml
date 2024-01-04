@@ -3,7 +3,9 @@ name: Generate SDK
 on:
   workflow_dispatch:
     inputs:
-      version: string
+      version:
+        description: The new version you want to publish. Must of format "1.0.0".
+        required: true
 env:
   BRANCH_NAME: "bot/update-for-api-${{ inputs.version }}"
   COMMIT_MESSAGE: "chore: update for api version ${{ inputs.version }}"
