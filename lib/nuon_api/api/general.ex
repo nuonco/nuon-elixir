@@ -81,7 +81,7 @@ defmodule NuonAPI.Api.General do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` ([NuonAPI.Model.ServicePublishMetricInput.t]): Input
+  - `service_publish_metric_input` ([NuonAPI.Model.ServicePublishMetricInput.t]): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -90,12 +90,12 @@ defmodule NuonAPI.Api.General do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec publish_metrics(Tesla.Env.client, list(NuonAPI.Model.ServicePublishMetricInput.t), keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, String.t} | {:error, Tesla.Env.t}
-  def publish_metrics(connection, req, _opts \\ []) do
+  def publish_metrics(connection, service_publish_metric_input, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/general/metrics")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_publish_metric_input)
       |> Enum.into([])
 
     connection

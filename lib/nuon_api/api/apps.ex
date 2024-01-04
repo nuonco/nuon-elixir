@@ -15,7 +15,7 @@ defmodule NuonAPI.Api.Apps do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceCreateAppRequest): Input
+  - `service_create_app_request` (ServiceCreateAppRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -24,12 +24,12 @@ defmodule NuonAPI.Api.Apps do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_app(Tesla.Env.client, NuonAPI.Model.ServiceCreateAppRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppApp.t} | {:error, Tesla.Env.t}
-  def create_app(connection, req, _opts \\ []) do
+  def create_app(connection, service_create_app_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_app_request)
       |> Enum.into([])
 
     connection
@@ -50,7 +50,7 @@ defmodule NuonAPI.Api.Apps do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `req` (ServiceCreateAppInputConfigRequest): Input
+  - `service_create_app_input_config_request` (ServiceCreateAppInputConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -59,12 +59,12 @@ defmodule NuonAPI.Api.Apps do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_app_input_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateAppInputConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppAppInputConfig.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_app_input_config(connection, app_id, req, _opts \\ []) do
+  def create_app_input_config(connection, app_id, service_create_app_input_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps/#{app_id}/input-config")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_app_input_config_request)
       |> Enum.into([])
 
     connection
@@ -86,7 +86,7 @@ defmodule NuonAPI.Api.Apps do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `req` (ServiceCreateAppInstallerRequest): Input
+  - `service_create_app_installer_request` (ServiceCreateAppInstallerRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -95,12 +95,12 @@ defmodule NuonAPI.Api.Apps do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_app_installer(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateAppInstallerRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppAppInstaller.t} | {:error, Tesla.Env.t}
-  def create_app_installer(connection, app_id, req, _opts \\ []) do
+  def create_app_installer(connection, app_id, service_create_app_installer_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps/#{app_id}/installer")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_app_installer_request)
       |> Enum.into([])
 
     connection
@@ -122,7 +122,7 @@ defmodule NuonAPI.Api.Apps do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `req` (ServiceCreateAppSandboxConfigRequest): Input
+  - `service_create_app_sandbox_config_request` (ServiceCreateAppSandboxConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -131,12 +131,12 @@ defmodule NuonAPI.Api.Apps do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_app_sandbox_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateAppSandboxConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppAppSandboxConfig.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_app_sandbox_config(connection, app_id, req, _opts \\ []) do
+  def create_app_sandbox_config(connection, app_id, service_create_app_sandbox_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps/#{app_id}/sandbox-config")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_app_sandbox_config_request)
       |> Enum.into([])
 
     connection
@@ -497,7 +497,7 @@ defmodule NuonAPI.Api.Apps do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `req` (ServiceUpdateAppRequest): Input
+  - `service_update_app_request` (ServiceUpdateAppRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -506,12 +506,12 @@ defmodule NuonAPI.Api.Apps do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec update_app(Tesla.Env.client, String.t, NuonAPI.Model.ServiceUpdateAppRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppApp.t} | {:error, Tesla.Env.t}
-  def update_app(connection, app_id, req, _opts \\ []) do
+  def update_app(connection, app_id, service_update_app_request, _opts \\ []) do
     request =
       %{}
       |> method(:patch)
       |> url("/v1/apps/#{app_id}")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_update_app_request)
       |> Enum.into([])
 
     connection
@@ -533,7 +533,7 @@ defmodule NuonAPI.Api.Apps do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `installer_id` (String.t): installer ID
-  - `req` (ServiceUpdateAppInstallerRequest): Input
+  - `service_update_app_installer_request` (ServiceUpdateAppInstallerRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -542,12 +542,12 @@ defmodule NuonAPI.Api.Apps do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec update_app_installer(Tesla.Env.client, String.t, NuonAPI.Model.ServiceUpdateAppInstallerRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppAppInstaller.t} | {:error, Tesla.Env.t}
-  def update_app_installer(connection, installer_id, req, _opts \\ []) do
+  def update_app_installer(connection, installer_id, service_update_app_installer_request, _opts \\ []) do
     request =
       %{}
       |> method(:patch)
       |> url("/v1/installers/#{installer_id}")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_update_app_installer_request)
       |> Enum.into([])
 
     connection

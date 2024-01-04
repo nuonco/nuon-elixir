@@ -16,7 +16,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `req` (ServiceCreateComponentRequest): Input
+  - `service_create_component_request` (ServiceCreateComponentRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -25,12 +25,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_component(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateComponentRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppComponent.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_component(connection, app_id, req, _opts \\ []) do
+  def create_component(connection, app_id, service_create_component_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps/#{app_id}/components")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_component_request)
       |> Enum.into([])
 
     connection
@@ -52,7 +52,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateComponentBuildRequest): Input
+  - `service_create_component_build_request` (ServiceCreateComponentBuildRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -61,12 +61,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_component_build(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateComponentBuildRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppComponentBuild.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_component_build(connection, component_id, req, _opts \\ []) do
+  def create_component_build(connection, component_id, service_create_component_build_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/builds")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_component_build_request)
       |> Enum.into([])
 
     connection
@@ -88,7 +88,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateDockerBuildComponentConfigRequest): Input
+  - `service_create_docker_build_component_config_request` (ServiceCreateDockerBuildComponentConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -97,12 +97,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_docker_build_component_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateDockerBuildComponentConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppDockerBuildComponentConfig.t} | {:error, Tesla.Env.t}
-  def create_docker_build_component_config(connection, component_id, req, _opts \\ []) do
+  def create_docker_build_component_config(connection, component_id, service_create_docker_build_component_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/configs/docker-build")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_docker_build_component_config_request)
       |> Enum.into([])
 
     connection
@@ -124,7 +124,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateExternalImageComponentConfigRequest): Input
+  - `service_create_external_image_component_config_request` (ServiceCreateExternalImageComponentConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -133,12 +133,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_external_image_component_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateExternalImageComponentConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppExternalImageComponentConfig.t} | {:error, Tesla.Env.t}
-  def create_external_image_component_config(connection, component_id, req, _opts \\ []) do
+  def create_external_image_component_config(connection, component_id, service_create_external_image_component_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/configs/external-image")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_external_image_component_config_request)
       |> Enum.into([])
 
     connection
@@ -160,7 +160,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateHelmComponentConfigRequest): Input
+  - `service_create_helm_component_config_request` (ServiceCreateHelmComponentConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -169,12 +169,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_helm_component_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateHelmComponentConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppHelmComponentConfig.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_helm_component_config(connection, component_id, req, _opts \\ []) do
+  def create_helm_component_config(connection, component_id, service_create_helm_component_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/configs/helm")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_helm_component_config_request)
       |> Enum.into([])
 
     connection
@@ -196,7 +196,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateJobComponentConfigRequest): Input
+  - `service_create_job_component_config_request` (ServiceCreateJobComponentConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -205,12 +205,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_job_component_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateJobComponentConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppJobComponentConfig.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_job_component_config(connection, component_id, req, _opts \\ []) do
+  def create_job_component_config(connection, component_id, service_create_job_component_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/configs/job")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_job_component_config_request)
       |> Enum.into([])
 
     connection
@@ -232,7 +232,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateTerraformModuleComponentConfigRequest): Input
+  - `service_create_terraform_module_component_config_request` (ServiceCreateTerraformModuleComponentConfigRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -241,12 +241,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_terraform_module_component_config(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateTerraformModuleComponentConfigRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppTerraformModuleComponentConfig.t} | {:error, Tesla.Env.t}
-  def create_terraform_module_component_config(connection, component_id, req, _opts \\ []) do
+  def create_terraform_module_component_config(connection, component_id, service_create_terraform_module_component_config_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/configs/terraform-module")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_terraform_module_component_config_request)
       |> Enum.into([])
 
     connection
@@ -410,10 +410,10 @@ defmodule NuonAPI.Api.Components do
 
   ### Returns
 
-  - `{:ok, [%Map{}, ...]}` on success
+  - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_component_build_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(Map.t)} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_component_build_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(any())} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_component_build_logs(connection, component_id, build_id, _opts \\ []) do
     request =
       %{}
@@ -644,7 +644,7 @@ defmodule NuonAPI.Api.Components do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceUpdateComponentRequest): Input
+  - `service_update_component_request` (ServiceUpdateComponentRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -653,12 +653,12 @@ defmodule NuonAPI.Api.Components do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec update_component(Tesla.Env.client, String.t, NuonAPI.Model.ServiceUpdateComponentRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppComponent.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def update_component(connection, component_id, req, _opts \\ []) do
+  def update_component(connection, component_id, service_update_component_request, _opts \\ []) do
     request =
       %{}
       |> method(:patch)
       |> url("/v1/components/#{component_id}")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_update_component_request)
       |> Enum.into([])
 
     connection

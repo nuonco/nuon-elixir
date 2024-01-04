@@ -15,7 +15,7 @@ defmodule NuonAPI.Api.Releases do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceCreateComponentReleaseRequest): Input
+  - `service_create_component_release_request` (ServiceCreateComponentReleaseRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -24,12 +24,12 @@ defmodule NuonAPI.Api.Releases do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_build_release(Tesla.Env.client, NuonAPI.Model.ServiceCreateComponentReleaseRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppComponentRelease.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_build_release(connection, req, _opts \\ []) do
+  def create_build_release(connection, service_create_component_release_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/releases")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_component_release_request)
       |> Enum.into([])
 
     connection
@@ -51,7 +51,7 @@ defmodule NuonAPI.Api.Releases do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `component_id` (String.t): component ID
-  - `req` (ServiceCreateComponentReleaseRequest): Input
+  - `service_create_component_release_request` (ServiceCreateComponentReleaseRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -60,12 +60,12 @@ defmodule NuonAPI.Api.Releases do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_component_release(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateComponentReleaseRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppComponentRelease.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_component_release(connection, component_id, req, _opts \\ []) do
+  def create_component_release(connection, component_id, service_create_component_release_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/components/#{component_id}/releases")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_component_release_request)
       |> Enum.into([])
 
     connection

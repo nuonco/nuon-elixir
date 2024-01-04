@@ -15,7 +15,7 @@ defmodule NuonAPI.Api.Vcs do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceCreateConnectionRequest): Input
+  - `service_create_connection_request` (ServiceCreateConnectionRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -24,12 +24,12 @@ defmodule NuonAPI.Api.Vcs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_vcs_connection(Tesla.Env.client, NuonAPI.Model.ServiceCreateConnectionRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppVcsConnection.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_vcs_connection(connection, req, _opts \\ []) do
+  def create_vcs_connection(connection, service_create_connection_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/vcs/connections")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_connection_request)
       |> Enum.into([])
 
     connection
@@ -50,7 +50,7 @@ defmodule NuonAPI.Api.Vcs do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceCreateConnectionCallbackRequest): Input
+  - `service_create_connection_callback_request` (ServiceCreateConnectionCallbackRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -59,12 +59,12 @@ defmodule NuonAPI.Api.Vcs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_vcs_connection_callback(Tesla.Env.client, NuonAPI.Model.ServiceCreateConnectionCallbackRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppVcsConnection.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_vcs_connection_callback(connection, req, _opts \\ []) do
+  def create_vcs_connection_callback(connection, service_create_connection_callback_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/vcs/connection-callback")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_connection_callback_request)
       |> Enum.into([])
 
     connection
