@@ -9,6 +9,8 @@ on:
 env:
   BRANCH_NAME: "bot/update-for-api-${{ inputs.version }}"
   COMMIT_MESSAGE: "chore: update for api version ${{ inputs.version }}"
+  GIT_USER_EMAIL: "<>"
+  GIT_USER_NAME: "bot"
 jobs:
   generate-sdk:
     name: Generate SDK
@@ -16,6 +18,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Configure git
+        run: |
+          git config --global user.email $GIT_USER_EMAIL
+          git config --global user.name $GIT_USER_NAME
       - name: Create branch
         run: |
           git checkout -b $BRANCH_NAME
