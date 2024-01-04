@@ -5,8 +5,8 @@ on:
     inputs:
       version: string
 env:
-  BRANCH_NAME: bot/update-for-api-${{ inputs.version }}
-  COMMIT_MESSAGE: chore: update for api version ${{ inputs.version }}
+  BRANCH_NAME: "bot/update-for-api-${{ inputs.version }}"
+  COMMIT_MESSAGE: "chore: update for api version ${{ inputs.version }}"
 jobs:
   generate-sdk:
     name: Generate SDK
