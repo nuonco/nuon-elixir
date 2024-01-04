@@ -36,5 +36,5 @@ jobs:
           git push -u origin $BRANCH_NAME
       - name: Open PR
         run: |
-          gh pr create --title "$COMMIT_MESSAGE"
+          gh pr create --title "$COMMIT_MESSAGE" --body "$COMMIT_MESSAGE"
           gh pr merge --auto --delete-branch --squash "$BRANCH_NAME"
