@@ -16,7 +16,7 @@ defmodule NuonAPI.Api.Installs do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `req` (ServiceCreateInstallRequest): Input
+  - `service_create_install_request` (ServiceCreateInstallRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -25,12 +25,12 @@ defmodule NuonAPI.Api.Installs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_install(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateInstallRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppInstall.t} | {:error, Tesla.Env.t}
-  def create_install(connection, app_id, req, _opts \\ []) do
+  def create_install(connection, app_id, service_create_install_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps/#{app_id}/installs")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_install_request)
       |> Enum.into([])
 
     connection
@@ -52,7 +52,7 @@ defmodule NuonAPI.Api.Installs do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `install_id` (String.t): install ID
-  - `req` (ServiceCreateInstallDeployRequest): Input
+  - `service_create_install_deploy_request` (ServiceCreateInstallDeployRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -61,12 +61,12 @@ defmodule NuonAPI.Api.Installs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_install_deploy(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateInstallDeployRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppInstallDeploy.t} | {:error, Tesla.Env.t}
-  def create_install_deploy(connection, install_id, req, _opts \\ []) do
+  def create_install_deploy(connection, install_id, service_create_install_deploy_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/installs/#{install_id}/deploys")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_install_deploy_request)
       |> Enum.into([])
 
     connection
@@ -88,7 +88,7 @@ defmodule NuonAPI.Api.Installs do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `install_id` (String.t): install ID
-  - `req` (ServiceCreateInstallInputsRequest): Input
+  - `service_create_install_inputs_request` (ServiceCreateInstallInputsRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -97,12 +97,12 @@ defmodule NuonAPI.Api.Installs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_install_inputs(Tesla.Env.client, String.t, NuonAPI.Model.ServiceCreateInstallInputsRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppInstallInputs.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_install_inputs(connection, install_id, req, _opts \\ []) do
+  def create_install_inputs(connection, install_id, service_create_install_inputs_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/installs/#{install_id}/inputs")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_install_inputs_request)
       |> Enum.into([])
 
     connection
@@ -439,10 +439,10 @@ defmodule NuonAPI.Api.Installs do
 
   ### Returns
 
-  - `{:ok, [%Map{}, ...]}` on success
+  - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_deploy_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(Map.t)} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_deploy_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(any())} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_install_deploy_logs(connection, install_id, deploy_id, _opts \\ []) do
     request =
       %{}
@@ -611,10 +611,10 @@ defmodule NuonAPI.Api.Installs do
 
   ### Returns
 
-  - `{:ok, [%Map{}, ...]}` on success
+  - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_sandbox_run_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(Map.t)} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_sandbox_run_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(any())} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_install_sandbox_run_logs(connection, install_id, run_id, _opts \\ []) do
     request =
       %{}
@@ -708,7 +708,7 @@ defmodule NuonAPI.Api.Installs do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `installer_slug` (String.t): installer slug or ID
-  - `req` (ServiceInstallerCreateInstallRequest): Input
+  - `service_installer_create_install_request` (ServiceInstallerCreateInstallRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -717,12 +717,12 @@ defmodule NuonAPI.Api.Installs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec installer_create_installer(Tesla.Env.client, String.t, NuonAPI.Model.ServiceInstallerCreateInstallRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppInstall.t} | {:error, Tesla.Env.t}
-  def installer_create_installer(connection, installer_slug, req, _opts \\ []) do
+  def installer_create_installer(connection, installer_slug, service_installer_create_install_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/installer/#{installer_slug}/installs")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_installer_create_install_request)
       |> Enum.into([])
 
     connection
@@ -779,7 +779,7 @@ defmodule NuonAPI.Api.Installs do
 
   - `connection` (NuonAPI.Connection): Connection to server
   - `install_id` (String.t): app ID
-  - `req` (ServiceUpdateInstallRequest): Input
+  - `service_update_install_request` (ServiceUpdateInstallRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -788,12 +788,12 @@ defmodule NuonAPI.Api.Installs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec update_install(Tesla.Env.client, String.t, NuonAPI.Model.ServiceUpdateInstallRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppInstall.t} | {:error, Tesla.Env.t}
-  def update_install(connection, install_id, req, _opts \\ []) do
+  def update_install(connection, install_id, service_update_install_request, _opts \\ []) do
     request =
       %{}
       |> method(:patch)
       |> url("/v1/installs/#{install_id}")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_update_install_request)
       |> Enum.into([])
 
     connection

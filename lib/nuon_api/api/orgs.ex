@@ -15,7 +15,7 @@ defmodule NuonAPI.Api.Orgs do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceCreateOrgUserRequest): Input
+  - `service_create_org_user_request` (ServiceCreateOrgUserRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -24,12 +24,12 @@ defmodule NuonAPI.Api.Orgs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec add_user(Tesla.Env.client, NuonAPI.Model.ServiceCreateOrgUserRequest.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppUserOrg.t} | {:error, Tesla.Env.t}
-  def add_user(connection, req, _opts \\ []) do
+  def add_user(connection, service_create_org_user_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/orgs/current/user")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_org_user_request)
       |> Enum.into([])
 
     connection
@@ -50,7 +50,7 @@ defmodule NuonAPI.Api.Orgs do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceCreateOrgRequest): Input
+  - `service_create_org_request` (ServiceCreateOrgRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -59,12 +59,12 @@ defmodule NuonAPI.Api.Orgs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec create_org(Tesla.Env.client, NuonAPI.Model.ServiceCreateOrgRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppOrg.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def create_org(connection, req, _opts \\ []) do
+  def create_org(connection, service_create_org_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/orgs")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_create_org_request)
       |> Enum.into([])
 
     connection
@@ -184,7 +184,7 @@ defmodule NuonAPI.Api.Orgs do
   ### Parameters
 
   - `connection` (NuonAPI.Connection): Connection to server
-  - `req` (ServiceUpdateOrgRequest): Input
+  - `service_update_org_request` (ServiceUpdateOrgRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -193,12 +193,12 @@ defmodule NuonAPI.Api.Orgs do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec update_org(Tesla.Env.client, NuonAPI.Model.ServiceUpdateOrgRequest.t, keyword()) :: {:ok, NuonAPI.Model.AppOrg.t} | {:ok, NuonAPI.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def update_org(connection, req, _opts \\ []) do
+  def update_org(connection, service_update_org_request, _opts \\ []) do
     request =
       %{}
       |> method(:patch)
       |> url("/v1/orgs/current")
-      |> add_param(:body, :body, req)
+      |> add_param(:body, :body, service_update_org_request)
       |> Enum.into([])
 
     connection

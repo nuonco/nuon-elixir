@@ -8,19 +8,19 @@ defmodule NuonAPI.Connection do
   Additional middleware can be set in the compile-time or runtime configuration:
 
       config :tesla, NuonAPI.Connection,
-        base_url: "https://ctl.stage.nuon.co",
+        base_url: "http://localhost:8081",
         adapter: Tesla.Adapter.Hackney
 
   The default base URL can also be set as:
 
       config :nuon_api,
-        :base_url, "https://ctl.stage.nuon.co"
+        :base_url, "http://localhost:8081"
   """
 
   @default_base_url Application.compile_env(
                       :nuon_api,
                       :base_url,
-                      "https://ctl.stage.nuon.co"
+                      "http://localhost:8081"
                     )
 
 
@@ -96,7 +96,7 @@ defmodule NuonAPI.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - NuonAPI v1 - elixir"
+          "openapi-generator - NuonAPI 1.0.0 - elixir"
         )
       )
 

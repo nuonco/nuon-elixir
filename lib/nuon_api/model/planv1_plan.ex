@@ -12,7 +12,7 @@ defmodule NuonAPI.Model.Planv1Plan do
   ]
 
   @type t :: %__MODULE__{
-    :actual => map() | nil
+    :actual => any() | nil
   }
 
   def decode(value) do
