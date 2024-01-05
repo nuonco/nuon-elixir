@@ -1,0 +1,14 @@
+---
+name: tag
+on:
+  release:
+    types: [created]
+env:
+  HEX_API_KEY: ${{ secrets.HEX_GITHUB_TOKEN }}
+jobs:
+  publish:
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Publish package to Hex.pm
+        uses: wesleimp/action-publish-hex@v1
