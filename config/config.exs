@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :nuon_api, base_url: "http://localhost:8081"
+config :nuon_api, base_url: "https://ctl.stage.nuon.co"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

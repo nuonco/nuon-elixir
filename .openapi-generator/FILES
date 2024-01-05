@@ -33,6 +33,7 @@ lib/nuon_api/model/app_helm_component_config.ex
 lib/nuon_api/model/app_install.ex
 lib/nuon_api/model/app_install_component.ex
 lib/nuon_api/model/app_install_deploy.ex
+lib/nuon_api/model/app_install_deploy_type.ex
 lib/nuon_api/model/app_install_inputs.ex
 lib/nuon_api/model/app_install_sandbox_run.ex
 lib/nuon_api/model/app_job_component_config.ex
