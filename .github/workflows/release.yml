@@ -1,0 +1,17 @@
+---
+name: release
+on:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  release:
+    name: Tag new version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release
+        id: release
+        run: ./scripts/release.sh

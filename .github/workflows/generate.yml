@@ -2,9 +2,11 @@
 name: Generate SDK
 on:
   workflow_dispatch:
+  repository_dispatch:
 env:
-  BRANCH_NAME: "nuonbot/regenerate"
-  COMMIT_MESSAGE: "chore: regenerate from new api version"
+  GET_VERSION: $(./scripts/get_version.sh)
+  BRANCH_NAME: "nuonbot/api-version-$GET_VERSION"
+  COMMIT_MESSAGE: "chore: regenerate from api version $GET_VERSION"
 jobs:
   generate-sdk:
     name: Generate SDK
