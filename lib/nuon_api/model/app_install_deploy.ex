@@ -15,6 +15,7 @@ defmodule NuonAPI.Model.AppInstallDeploy do
     :created_by_id,
     :id,
     :install_component_id,
+    :install_deploy_type,
     :install_id,
     :release_id,
     :status,
@@ -30,6 +31,7 @@ defmodule NuonAPI.Model.AppInstallDeploy do
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :install_component_id => String.t | nil,
+    :install_deploy_type => NuonAPI.Model.AppInstallDeployType.t | nil,
     :install_id => String.t | nil,
     :release_id => String.t | nil,
     :status => String.t | nil,
@@ -37,8 +39,11 @@ defmodule NuonAPI.Model.AppInstallDeploy do
     :updated_at => String.t | nil
   }
 
+  alias NuonAPI.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:install_deploy_type, :struct, NuonAPI.Model.AppInstallDeployType)
   end
 end
 
