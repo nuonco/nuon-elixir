@@ -2,16 +2,9 @@
 name: Generate SDK
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: The new version you want to publish. Must of format "1.0.0".
-        required: true
 env:
-  BRANCH_NAME: "bot/update-for-api-${{ inputs.version }}"
-  COMMIT_MESSAGE: "chore: update for api version ${{ inputs.version }}"
-  GIT_USER_EMAIL: "<>"
-  GIT_USER_NAME: "bot"
-  GH_TOKEN: ${{ github.token }}
+  BRANCH_NAME: "nuonbot/regenerate"
+  COMMIT_MESSAGE: "chore: regenerate from new api version"
 jobs:
   generate-sdk:
     name: Generate SDK
@@ -19,18 +12,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Configure git
-        run: |
-          git config --global user.email $GIT_USER_EMAIL
-          git config --global user.name $GIT_USER_NAME
-      - name: Create branch
-        run: |
-          git checkout -b $BRANCH_NAME
+      - name: Enable commit signing
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.NUON_BOT_GITHUB_TOKEN }}
+          passphrase: ""
+          git_user_signingkey: true
+          git_commit_gpgsign: true
       - name: Generate SDK
         run: |
           ./scripts/generate.sh
       - name: Commit changes
         run: |
+          git checkout -b $BRANCH_NAME
           git add .
           git commit -m "$COMMIT_MESSAGE"
           git push -u origin $BRANCH_NAME
