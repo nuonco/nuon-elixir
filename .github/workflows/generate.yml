@@ -17,8 +17,8 @@ jobs:
       - name: Enable commit signing
         uses: crazy-max/ghaction-import-gpg@v6
         with:
-          gpg_private_key: ${{ secrets.NUON_BOT_GITHUB_TOKEN }}
-          passphrase: ""
+          gpg_private_key: ${{ secrets.NUON_BOT_PRIVATE_KEY }}
+          passphrase: ${{ secrets.NUON_BOT_PASSPHRASE }}
           git_user_signingkey: true
           git_commit_gpgsign: true
       - name: Generate SDK
