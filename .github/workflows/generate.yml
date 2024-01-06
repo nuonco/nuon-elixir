@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   repository_dispatch:
 env:
-  GET_VERSION: $(./scripts/get_version.sh)
+  GET_VERSION: $(cat version.txt)
   BRANCH_NAME: "nuonbot/api-version-$GET_VERSION"
   COMMIT_MESSAGE: "chore: regenerate from api version $GET_VERSION"
 jobs:

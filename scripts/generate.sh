@@ -9,3 +9,6 @@ docker run --rm \
   -i $SPEC \
   -g elixir \
   -o /local
+
+# save version to file for workflows to read from
+cat mix.exs | grep version | sed -e 's/.*version: "\(.*\)",/\1/' > version.txt
