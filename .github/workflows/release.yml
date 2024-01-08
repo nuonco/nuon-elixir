@@ -9,6 +9,7 @@ defaults:
     shell: bash
 env:
   GH_TOKEN: ${{ github.token }}
+  HEX_API_KEY: ${{ secrets.HEX_GITHUB_TOKEN }}
 jobs:
   release:
     name: Tag new version
@@ -19,3 +20,5 @@ jobs:
       - name: Release
         id: release
         run: gh release create $(cat version.txt) --generate-notes --target main
+      - name: Publish package to Hex.pm
+        uses: wesleimp/action-publish-hex@v1
