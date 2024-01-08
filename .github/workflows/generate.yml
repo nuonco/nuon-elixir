@@ -5,9 +5,8 @@ on:
   repository_dispatch:
 env:
   GH_TOKEN: ${{ github.token }}
-  GET_VERSION: $(cat version.txt)
-  BRANCH_NAME: "nuonbot/api-version-$GET_VERSION"
-  COMMIT_MESSAGE: "chore: regenerate from api version $GET_VERSION"
+  BRANCH_NAME: "nuonbot/api-version-$(cat version.txt)"
+  COMMIT_MESSAGE: "chore: regenerate from api version $(cat version.txt)"
 jobs:
   generate-sdk:
     name: Generate SDK
