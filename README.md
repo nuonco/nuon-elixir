@@ -31,14 +31,14 @@ You can override the URL of your server (e.g. if you have a separate development
 configuration files).
 
 ```elixir
-config :nuon_api, base_url: "https://ctl.stage.nuon.co"
+config :nuon_api, base_url: "https://ctl.prod.nuon.co"
 ```
 
 Multiple clients for the same API with different URLs can be created passing different `base_url`s when calling
 `NuonAPI.Connection.new/1`:
 
 ```elixir
-client = NuonAPI.Connection.new(base_url: "https://ctl.stage.nuon.co")
+client = NuonAPI.Connection.new(base_url: "https://ctl.prod.nuon.co")
 ```
 
 [exdoc]: https://github.com/elixir-lang/ex_doc
