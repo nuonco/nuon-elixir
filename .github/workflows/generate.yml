@@ -5,8 +5,6 @@ on:
   repository_dispatch:
 env:
   GH_TOKEN: ${{ github.token }}
-  BRANCH_NAME: "nuonbot/api-version-$(cat version.txt)"
-  COMMIT_MESSAGE: "chore: regenerate from api version $(cat version.txt)"
 jobs:
   generate-sdk:
     name: Generate SDK
@@ -26,11 +24,11 @@ jobs:
           ./scripts/generate.sh
       - name: Commit changes
         run: |
-          git checkout -b $BRANCH_NAME
+          git checkout -b nuonbot/api-version-$(cat version.txt)
           git add .
-          git commit -m "$COMMIT_MESSAGE"
-          git push -u origin $BRANCH_NAME
+          git commit -m "chore: regenerate from api version $(cat version.txt)"
+          git push -u origin nuonbot/api-version-$(cat version.txt)
       - name: Open PR
         run: |
-          gh pr create --title "$COMMIT_MESSAGE" --body "$COMMIT_MESSAGE"
-          gh pr merge --auto --delete-branch --squash "$BRANCH_NAME"
+          gh pr create --title "chore: regenerate from api version $(cat version.txt)" --body "chore: regenerate from api version $(cat version.txt)"
+          gh pr merge --auto --delete-branch --squash nuonbot/api-version-$(cat version.txt)
