@@ -7,6 +7,8 @@ env:
   HEX_API_KEY: ${{ secrets.HEX_GITHUB_TOKEN }}
 jobs:
   publish:
+    name: Publish to Hex
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
