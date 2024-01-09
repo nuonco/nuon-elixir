@@ -780,7 +780,6 @@ defmodule NuonAPI.Api.Installs do
   - `connection` (NuonAPI.Connection): Connection to server
   - `install_id` (String.t): install ID
   - `component_id` (String.t): component ID
-  - `body` (map()): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -788,13 +787,13 @@ defmodule NuonAPI.Api.Installs do
   - `{:ok, NuonAPI.Model.AppInstallDeploy.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec teardown_install_component(Tesla.Env.client, String.t, String.t, %{optional(String.t) => }, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppInstallDeploy.t} | {:error, Tesla.Env.t}
-  def teardown_install_component(connection, install_id, component_id, body, _opts \\ []) do
+  @spec teardown_install_component(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, NuonAPI.Model.StderrErrResponse.t} | {:ok, NuonAPI.Model.AppInstallDeploy.t} | {:error, Tesla.Env.t}
+  def teardown_install_component(connection, install_id, component_id, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/installs/#{install_id}/components/#{component_id}/teardown")
-      |> add_param(:body, :body, body)
+      |> ensure_body()
       |> Enum.into([])
 
     connection
