@@ -1,5 +1,5 @@
 ---
-name: release
+name: Release
 on:
   push:
     branches:
@@ -12,13 +12,12 @@ env:
   HEX_API_KEY: ${{ secrets.HEX_GITHUB_TOKEN }}
 jobs:
   release:
-    name: Tag new version
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Release
-        id: release
         run: gh release create $(cat version.txt) --generate-notes --target main
-      - name: Publish package to Hex.pm
+      - name: Publish
         run: ./scripts/publish.sh
