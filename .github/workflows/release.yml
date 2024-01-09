@@ -12,12 +12,4 @@ env:
   HEX_API_KEY: ${{ secrets.HEX_GITHUB_TOKEN }}
 jobs:
   release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Release
-        run: gh release create $(cat version.txt) --generate-notes --target main
-      - name: Publish
-        run: ./scripts/publish.sh
+    uses: nuonco/.github/.github/workflows/release.yml@ja/3498-shared-sdk-workflows

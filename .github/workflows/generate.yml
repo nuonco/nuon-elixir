@@ -4,32 +4,6 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [generate]
-env:
-  GH_TOKEN: ${{ secrets.NUON_BOT_GITHUB_TOKEN }}
 jobs:
   generate:
-    name: Generate
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Enable commit signing
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.NUON_BOT_PRIVATE_KEY }}
-          passphrase: ${{ secrets.NUON_BOT_PASSPHRASE }}
-          git_user_signingkey: true
-          git_commit_gpgsign: true
-      - name: Generate
-        run: |
-          ./scripts/generate.sh
-      - name: Commit changes
-        run: |
-          git checkout -b nuonbot/generate-from-api-$(cat version.txt)
-          git add .
-          git commit -m "ci: generate from api $(cat version.txt)"
-          git push -u origin nuonbot/generate-from-api-$(cat version.txt)
-      - name: Open PR
-        run: |
-          gh pr create --title "ci: generate from api $(cat version.txt)" --body "ci: generate from api $(cat version.txt)"
-          gh pr merge --auto --delete-branch --squash nuonbot/api-version-$(cat version.txt)
+    uses: nuonco/.github/.github/workflows/generate.yml@ja/3498-shared-sdk-workflows
