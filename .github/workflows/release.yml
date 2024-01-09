@@ -21,4 +21,4 @@ jobs:
         id: release
         run: gh release create $(cat version.txt) --generate-notes --target main
       - name: Publish package to Hex.pm
-        uses: wesleimp/action-publish-hex@v1
+        uses: ./scripts/publish.sh
