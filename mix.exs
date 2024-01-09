@@ -46,12 +46,6 @@ defmodule NuonAPI.Mixfile do
       [
         name: "nuon_api",
         files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
-        licenses: ["MIT"],
-        links: [
-            "Website" => "https://www.nuon.co/",
-            "Docs" => "https://docs.nuon.co/quickstart",
-            "Github" => "https://github.com/nuonco/nuon-elixir"
-        ]
       ]
   end
 end
