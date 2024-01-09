@@ -5,16 +5,4 @@ on:
     types: [opened, synchronize]
 jobs:
   check-pr:
-    uses: nuonco/.github/.github/workflows/pull_request.yml@main
-  auto-approve:
-    name: Auto-Approve
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    if: github.actor == 'nuonbot'
-    steps:
-      - name: Approve
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{ github.token }}
+    uses: nuonco/.github/.github/workflows/pull_request.yml@ja/3498-shared-sdk-workflows
