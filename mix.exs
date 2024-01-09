@@ -1,16 +1,16 @@
-defmodule NuonAPI.Mixfile do
+defmodule Nuon.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :nuon_api,
-      version: "0.19.13",
+      app: :nuon,
+      version: "0.19.14",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: """
-      API for managing nuon apps and installs.
+      API for managing nuon apps, components, and installs.
       """,
       deps: deps()
     ]
@@ -44,7 +44,7 @@ defmodule NuonAPI.Mixfile do
 
    defp package do
       [
-        name: "nuon_api",
+        name: "nuon",
         files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
         licenses: ["MIT"],
         links: %{
