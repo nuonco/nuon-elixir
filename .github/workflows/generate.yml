@@ -3,6 +3,7 @@ name: Generate SDK
 on:
   workflow_dispatch:
   repository_dispatch:
+    types: [generate]
 env:
   GH_TOKEN: ${{ secrets.NUON_BOT_GITHUB_TOKEN }}
 jobs:
