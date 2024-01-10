@@ -8,11 +8,13 @@ defmodule Nuon.Model.ServiceCreateComponentReleaseRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :auto_build,
     :build_id,
     :strategy
   ]
 
   @type t :: %__MODULE__{
+    :auto_build => boolean() | nil,
     :build_id => String.t | nil,
     :strategy => Nuon.Model.ServiceCreateComponentReleaseRequestStrategy.t | nil
   }
