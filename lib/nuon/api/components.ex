@@ -330,6 +330,40 @@ defmodule Nuon.Api.Components do
   end
 
   @doc """
+  get a build
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `build_id` (String.t): build ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppComponentBuild.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_build(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppComponentBuild.t} | {:error, Tesla.Env.t}
+  def get_build(connection, build_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/components/builds/#{build_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppComponentBuild},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get a component
 
   ### Parameters
