@@ -12,5 +12,5 @@ env:
   HEX_API_KEY: ${{ secrets.HEX_GITHUB_TOKEN }}
 jobs:
   release:
-    uses: nuonco/.github/.github/workflows/release.yml@ja/3498-shared-sdk-workflows
+    uses: nuonco/.github/.github/workflows/release.yml@main
     secrets: inherit

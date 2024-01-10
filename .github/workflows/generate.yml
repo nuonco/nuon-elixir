@@ -6,5 +6,5 @@ on:
     types: [generate]
 jobs:
   generate:
-    uses: nuonco/.github/.github/workflows/generate.yml@ja/3498-shared-sdk-workflows
+    uses: nuonco/.github/.github/workflows/generate.yml@main
     secrets: inherit
