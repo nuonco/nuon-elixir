@@ -6,3 +6,4 @@ on:
 jobs:
   check-pr:
     uses: nuonco/.github/.github/workflows/pull_request.yml@ja/3498-shared-sdk-workflows
+    secrets: inherit
