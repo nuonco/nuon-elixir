@@ -716,8 +716,8 @@ defmodule Nuon.Api.Installs do
   - `{:ok, Nuon.Model.AppInstall.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec installer_create_installer(Tesla.Env.client, String.t, Nuon.Model.ServiceInstallerCreateInstallRequest.t, keyword()) :: {:ok, Nuon.Model.AppInstall.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def installer_create_installer(connection, installer_slug, service_installer_create_install_request, _opts \\ []) do
+  @spec installer_create_install(Tesla.Env.client, String.t, Nuon.Model.ServiceInstallerCreateInstallRequest.t, keyword()) :: {:ok, Nuon.Model.AppInstall.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def installer_create_install(connection, installer_slug, service_installer_create_install_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
