@@ -6,6 +6,7 @@ config/runtime.exs
 lib/nuon/api/apps.ex
 lib/nuon/api/components.ex
 lib/nuon/api/general.ex
+lib/nuon/api/installers.ex
 lib/nuon/api/installs.ex
 lib/nuon/api/orgs.ex
 lib/nuon/api/releases.ex
@@ -21,6 +22,7 @@ lib/nuon/model/app_app_installer_metadata.ex
 lib/nuon/model/app_app_runner_config.ex
 lib/nuon/model/app_app_runner_type.ex
 lib/nuon/model/app_app_sandbox_config.ex
+lib/nuon/model/app_app_sandbox_config_artifacts.ex
 lib/nuon/model/app_aws_account.ex
 lib/nuon/model/app_awsecr_image_config.ex
 lib/nuon/model/app_component.ex
@@ -40,6 +42,8 @@ lib/nuon/model/app_install_inputs.ex
 lib/nuon/model/app_install_sandbox_run.ex
 lib/nuon/model/app_job_component_config.ex
 lib/nuon/model/app_org.ex
+lib/nuon/model/app_org_health_check.ex
+lib/nuon/model/app_org_health_check_status.ex
 lib/nuon/model/app_public_git_vcs_config.ex
 lib/nuon/model/app_sandbox.ex
 lib/nuon/model/app_sandbox_release.ex
@@ -83,7 +87,6 @@ lib/nuon/model/service_create_job_component_config_request.ex
 lib/nuon/model/service_create_org_request.ex
 lib/nuon/model/service_create_org_user_request.ex
 lib/nuon/model/service_create_terraform_module_component_config_request.ex
-lib/nuon/model/service_installer_create_install_request.ex
 lib/nuon/model/service_public_git_vcs_config_request.ex
 lib/nuon/model/service_public_git_vcs_sandbox_config_request.ex
 lib/nuon/model/service_publish_metric_input.ex
