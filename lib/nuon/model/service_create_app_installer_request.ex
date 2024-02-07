@@ -8,6 +8,7 @@ defmodule Nuon.Model.ServiceCreateAppInstallerRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :app_id,
     :description,
     :links,
     :name,
@@ -15,6 +16,7 @@ defmodule Nuon.Model.ServiceCreateAppInstallerRequest do
   ]
 
   @type t :: %__MODULE__{
+    :app_id => String.t,
     :description => String.t,
     :links => Nuon.Model.ServiceCreateAppInstallerRequestLinks.t | nil,
     :name => String.t,

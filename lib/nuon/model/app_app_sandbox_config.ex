@@ -9,6 +9,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
   @derive Jason.Encoder
   defstruct [
     :app_id,
+    :artifacts,
     :connected_github_vcs_config,
     :created_at,
     :created_by_id,
@@ -24,6 +25,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
 
   @type t :: %__MODULE__{
     :app_id => String.t | nil,
+    :artifacts => Nuon.Model.AppAppSandboxConfigArtifacts.t | nil,
     :connected_github_vcs_config => Nuon.Model.AppConnectedGithubVcsConfig.t | nil,
     :created_at => String.t | nil,
     :created_by_id => String.t | nil,
@@ -41,6 +43,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:artifacts, :struct, Nuon.Model.AppAppSandboxConfigArtifacts)
      |> Deserializer.deserialize(:connected_github_vcs_config, :struct, Nuon.Model.AppConnectedGithubVcsConfig)
      |> Deserializer.deserialize(:public_git_vcs_config, :struct, Nuon.Model.AppPublicGitVcsConfig)
      |> Deserializer.deserialize(:sandbox_release, :struct, Nuon.Model.AppSandboxRelease)
