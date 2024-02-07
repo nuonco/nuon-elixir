@@ -113,6 +113,40 @@ defmodule Nuon.Api.Installers do
   end
 
   @doc """
+  get installers for current org
+  Return all installers for the current org. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, [%AppAppInstaller{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_installers(Tesla.Env.client, keyword()) :: {:ok, list(Nuon.Model.AppAppInstaller.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def get_installers(connection, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/installers")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppAppInstaller},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   create an app install from an installer
 
   ### Parameters
