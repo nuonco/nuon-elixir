@@ -13,6 +13,7 @@ defmodule Nuon.Model.AppOrg do
     :custom_cert,
     :health_checks,
     :id,
+    :latest_health_check,
     :name,
     :sandbox_mode,
     :status,
@@ -28,6 +29,7 @@ defmodule Nuon.Model.AppOrg do
     :custom_cert => boolean() | nil,
     :health_checks => [Nuon.Model.AppOrgHealthCheck.t] | nil,
     :id => String.t | nil,
+    :latest_health_check => Nuon.Model.AppOrgHealthCheck.t | nil,
     :name => String.t | nil,
     :sandbox_mode => boolean() | nil,
     :status => String.t | nil,
@@ -42,6 +44,7 @@ defmodule Nuon.Model.AppOrg do
   def decode(value) do
     value
      |> Deserializer.deserialize(:health_checks, :list, Nuon.Model.AppOrgHealthCheck)
+     |> Deserializer.deserialize(:latest_health_check, :struct, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:users, :list, Nuon.Model.AppUserOrg)
      |> Deserializer.deserialize(:vcs_connections, :list, Nuon.Model.AppVcsConnection)
   end
