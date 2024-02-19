@@ -11,6 +11,7 @@ defmodule Nuon.Model.AppExternalImageComponentConfig do
     :aws_ecr_image_config,
     :component_config_connection_id,
     :created_at,
+    :created_by,
     :created_by_id,
     :id,
     :image_url,
@@ -22,6 +23,7 @@ defmodule Nuon.Model.AppExternalImageComponentConfig do
     :aws_ecr_image_config => Nuon.Model.AppAwsecrImageConfig.t | nil,
     :component_config_connection_id => String.t | nil,
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :image_url => String.t | nil,
@@ -34,6 +36,7 @@ defmodule Nuon.Model.AppExternalImageComponentConfig do
   def decode(value) do
     value
      |> Deserializer.deserialize(:aws_ecr_image_config, :struct, Nuon.Model.AppAwsecrImageConfig)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
   end
 end
 

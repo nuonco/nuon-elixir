@@ -12,6 +12,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
     :artifacts,
     :connected_github_vcs_config,
     :created_at,
+    :created_by,
     :created_by_id,
     :id,
     :org_id,
@@ -28,6 +29,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
     :artifacts => Nuon.Model.AppAppSandboxConfigArtifacts.t | nil,
     :connected_github_vcs_config => Nuon.Model.AppConnectedGithubVcsConfig.t | nil,
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :org_id => String.t | nil,
@@ -45,6 +47,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
     value
      |> Deserializer.deserialize(:artifacts, :struct, Nuon.Model.AppAppSandboxConfigArtifacts)
      |> Deserializer.deserialize(:connected_github_vcs_config, :struct, Nuon.Model.AppConnectedGithubVcsConfig)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:public_git_vcs_config, :struct, Nuon.Model.AppPublicGitVcsConfig)
      |> Deserializer.deserialize(:sandbox_release, :struct, Nuon.Model.AppSandboxRelease)
   end

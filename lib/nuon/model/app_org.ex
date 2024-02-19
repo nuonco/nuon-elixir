@@ -9,6 +9,7 @@ defmodule Nuon.Model.AppOrg do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :created_by,
     :created_by_id,
     :custom_cert,
     :health_checks,
@@ -25,6 +26,7 @@ defmodule Nuon.Model.AppOrg do
 
   @type t :: %__MODULE__{
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :custom_cert => boolean() | nil,
     :health_checks => [Nuon.Model.AppOrgHealthCheck.t] | nil,
@@ -43,6 +45,7 @@ defmodule Nuon.Model.AppOrg do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:health_checks, :list, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:latest_health_check, :struct, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:users, :list, Nuon.Model.AppUserOrg)

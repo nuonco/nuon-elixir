@@ -12,6 +12,7 @@ defmodule Nuon.Model.AppAppInstaller do
     :app_id,
     :app_installer_metadata,
     :created_at,
+    :created_by,
     :created_by_id,
     :id,
     :org_id,
@@ -24,6 +25,7 @@ defmodule Nuon.Model.AppAppInstaller do
     :app_id => String.t | nil,
     :app_installer_metadata => Nuon.Model.AppAppInstallerMetadata.t | nil,
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :org_id => String.t | nil,
@@ -37,6 +39,7 @@ defmodule Nuon.Model.AppAppInstaller do
     value
      |> Deserializer.deserialize(:app, :struct, Nuon.Model.AppApp)
      |> Deserializer.deserialize(:app_installer_metadata, :struct, Nuon.Model.AppAppInstallerMetadata)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
   end
 end
 

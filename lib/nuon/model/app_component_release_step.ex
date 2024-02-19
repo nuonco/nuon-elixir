@@ -10,6 +10,7 @@ defmodule Nuon.Model.AppComponentReleaseStep do
   defstruct [
     :component_release_id,
     :created_at,
+    :created_by,
     :created_by_id,
     :delay,
     :id,
@@ -23,6 +24,7 @@ defmodule Nuon.Model.AppComponentReleaseStep do
   @type t :: %__MODULE__{
     :component_release_id => String.t | nil,
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :delay => String.t | nil,
     :id => String.t | nil,
@@ -37,6 +39,7 @@ defmodule Nuon.Model.AppComponentReleaseStep do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:install_deploys, :list, Nuon.Model.AppInstallDeploy)
   end
 end

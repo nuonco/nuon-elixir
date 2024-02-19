@@ -9,6 +9,7 @@ defmodule Nuon.Model.AppSandbox do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :created_by,
     :created_by_id,
     :description,
     :id,
@@ -19,6 +20,7 @@ defmodule Nuon.Model.AppSandbox do
 
   @type t :: %__MODULE__{
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :description => String.t | nil,
     :id => String.t | nil,
@@ -31,6 +33,7 @@ defmodule Nuon.Model.AppSandbox do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:releases, :list, Nuon.Model.AppSandboxRelease)
   end
 end

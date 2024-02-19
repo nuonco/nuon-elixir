@@ -9,6 +9,7 @@ defmodule Nuon.Model.AppOrgHealthCheck do
   @derive Jason.Encoder
   defstruct [
     :created_at,
+    :created_by,
     :created_by_id,
     :id,
     :orgID,
@@ -19,6 +20,7 @@ defmodule Nuon.Model.AppOrgHealthCheck do
 
   @type t :: %__MODULE__{
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :orgID => String.t | nil,
@@ -31,6 +33,7 @@ defmodule Nuon.Model.AppOrgHealthCheck do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:status, :struct, Nuon.Model.AppOrgHealthCheckStatus)
   end
 end
