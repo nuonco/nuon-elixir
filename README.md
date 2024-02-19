@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:nuon, "~> 0.19.51"}]
+  [{:nuon, "~> 0.19.52"}]
 end
 ```
 
