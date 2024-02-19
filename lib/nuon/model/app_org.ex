@@ -8,6 +8,8 @@ defmodule Nuon.Model.AppOrg do
 
   @derive Jason.Encoder
   defstruct [
+    :awsecrimageConfigs,
+    :connectedGithubVCSConfigs,
     :created_at,
     :created_by,
     :created_by_id,
@@ -16,6 +18,7 @@ defmodule Nuon.Model.AppOrg do
     :id,
     :latest_health_check,
     :name,
+    :publicGitVCSConfigs,
     :sandbox_mode,
     :status,
     :status_description,
@@ -25,6 +28,8 @@ defmodule Nuon.Model.AppOrg do
   ]
 
   @type t :: %__MODULE__{
+    :awsecrimageConfigs => [Nuon.Model.AppAwsecrImageConfig.t] | nil,
+    :connectedGithubVCSConfigs => [Nuon.Model.AppConnectedGithubVcsConfig.t] | nil,
     :created_at => String.t | nil,
     :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
@@ -33,6 +38,7 @@ defmodule Nuon.Model.AppOrg do
     :id => String.t | nil,
     :latest_health_check => Nuon.Model.AppOrgHealthCheck.t | nil,
     :name => String.t | nil,
+    :publicGitVCSConfigs => [Nuon.Model.AppPublicGitVcsConfig.t] | nil,
     :sandbox_mode => boolean() | nil,
     :status => String.t | nil,
     :status_description => String.t | nil,
@@ -45,9 +51,12 @@ defmodule Nuon.Model.AppOrg do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:awsecrimageConfigs, :list, Nuon.Model.AppAwsecrImageConfig)
+     |> Deserializer.deserialize(:connectedGithubVCSConfigs, :list, Nuon.Model.AppConnectedGithubVcsConfig)
      |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:health_checks, :list, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:latest_health_check, :struct, Nuon.Model.AppOrgHealthCheck)
+     |> Deserializer.deserialize(:publicGitVCSConfigs, :list, Nuon.Model.AppPublicGitVcsConfig)
      |> Deserializer.deserialize(:users, :list, Nuon.Model.AppUserOrg)
      |> Deserializer.deserialize(:vcs_connections, :list, Nuon.Model.AppVcsConnection)
   end
