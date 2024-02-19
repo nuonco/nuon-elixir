@@ -12,6 +12,7 @@ defmodule Nuon.Model.AppVcsConnectionCommit do
     :author_name,
     :component_config_connection_id,
     :created_at,
+    :created_by,
     :created_by_id,
     :id,
     :message,
@@ -24,6 +25,7 @@ defmodule Nuon.Model.AppVcsConnectionCommit do
     :author_name => String.t | nil,
     :component_config_connection_id => String.t | nil,
     :created_at => String.t | nil,
+    :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :message => String.t | nil,
@@ -31,8 +33,11 @@ defmodule Nuon.Model.AppVcsConnectionCommit do
     :updated_at => String.t | nil
   }
 
+  alias Nuon.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
   end
 end
 
