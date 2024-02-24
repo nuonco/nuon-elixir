@@ -19,6 +19,7 @@ defmodule Nuon.Model.AppAppInput do
     :name,
     :org_id,
     :required,
+    :sensitive,
     :updated_at
   ]
 
@@ -34,6 +35,7 @@ defmodule Nuon.Model.AppAppInput do
     :name => String.t | nil,
     :org_id => String.t | nil,
     :required => boolean() | nil,
+    :sensitive => boolean() | nil,
     :updated_at => String.t | nil
   }
 
