@@ -11,14 +11,16 @@ defmodule Nuon.Model.ServiceAppInputRequest do
     :default,
     :description,
     :display_name,
-    :required
+    :required,
+    :sensitive
   ]
 
   @type t :: %__MODULE__{
     :default => String.t | nil,
     :description => String.t,
     :display_name => String.t,
-    :required => boolean() | nil
+    :required => boolean() | nil,
+    :sensitive => boolean() | nil
   }
 
   def decode(value) do
