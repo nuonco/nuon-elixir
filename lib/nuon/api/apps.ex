@@ -45,6 +45,42 @@ defmodule Nuon.Api.Apps do
   end
 
   @doc """
+  Create an app config, by pushing the contents of a config file.  The API will automatically configure the app according to the config file in the background. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `service_create_app_config_request` (ServiceCreateAppConfigRequest): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppAppConfig.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_app_config(Tesla.Env.client, String.t, Nuon.Model.ServiceCreateAppConfigRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppConfig.t} | {:error, Tesla.Env.t}
+  def create_app_config(connection, app_id, service_create_app_config_request, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/apps/#{app_id}/config")
+      |> add_param(:body, :body, service_create_app_config_request)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Nuon.Model.AppAppConfig},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
 
   ### Parameters
 
@@ -220,6 +256,78 @@ defmodule Nuon.Api.Apps do
   end
 
   @doc """
+  get an app config template
+  Create an application template which provides a fully rendered config that can be modified and used to kickstart any application. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `type` (String.t): app template type
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.ServiceAppConfigTemplate.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_app_config_template(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.ServiceAppConfigTemplate.t} | {:error, Tesla.Env.t}
+  def get_app_config_template(connection, app_id, type, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/apps/#{app_id}/template-config")
+      |> add_param(:query, :type, type)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Nuon.Model.ServiceAppConfigTemplate},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  get app configs
+  Returns all configs for the app. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, [%AppAppConfig{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_app_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppAppConfig.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def get_app_configs(connection, app_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/apps/#{app_id}/configs")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppAppConfig},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get app input configs
 
   ### Parameters
@@ -279,6 +387,41 @@ defmodule Nuon.Api.Apps do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Nuon.Model.AppAppInputConfig},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  get latest app config
+  Returns the most recent config for the provided app. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppAppConfig.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_app_latest_config(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppConfig.t} | {:error, Tesla.Env.t}
+  def get_app_latest_config(connection, app_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/apps/#{app_id}/latest-config")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppAppConfig},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
