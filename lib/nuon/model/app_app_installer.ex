@@ -15,6 +15,7 @@ defmodule Nuon.Model.AppAppInstaller do
     :created_by,
     :created_by_id,
     :id,
+    :installer_url,
     :org_id,
     :slug,
     :updated_at
@@ -28,6 +29,7 @@ defmodule Nuon.Model.AppAppInstaller do
     :created_by => Nuon.Model.AppUserToken.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
+    :installer_url => String.t | nil,
     :org_id => String.t | nil,
     :slug => String.t | nil,
     :updated_at => String.t | nil
