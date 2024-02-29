@@ -256,6 +256,42 @@ defmodule Nuon.Api.Apps do
   end
 
   @doc """
+  get an app config
+  Fetch an app config by id. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `app_config_id` (String.t): app config ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppAppConfig.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_app_config(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppConfig.t} | {:error, Tesla.Env.t}
+  def get_app_config(connection, app_id, app_config_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/apps/#{app_id}/config/#{app_config_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppAppConfig},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get an app config template
   Create an application template which provides a fully rendered config that can be modified and used to kickstart any application. 
 
