@@ -9,12 +9,14 @@ defmodule Nuon.Model.ServiceCreateInstallRequest do
   @derive Jason.Encoder
   defstruct [
     :aws_account,
+    :azure_account,
     :inputs,
     :name
   ]
 
   @type t :: %__MODULE__{
-    :aws_account => Nuon.Model.ServiceCreateInstallRequestAwsAccount.t,
+    :aws_account => Nuon.Model.ServiceCreateInstallRequestAwsAccount.t | nil,
+    :azure_account => Nuon.Model.ServiceCreateInstallRequestAzureAccount.t | nil,
     :inputs => %{optional(String.t) => String.t} | nil,
     :name => String.t
   }
@@ -24,6 +26,7 @@ defmodule Nuon.Model.ServiceCreateInstallRequest do
   def decode(value) do
     value
      |> Deserializer.deserialize(:aws_account, :struct, Nuon.Model.ServiceCreateInstallRequestAwsAccount)
+     |> Deserializer.deserialize(:azure_account, :struct, Nuon.Model.ServiceCreateInstallRequestAzureAccount)
   end
 end
 
