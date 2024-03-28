@@ -532,6 +532,77 @@ defmodule Nuon.Api.Installs do
   end
 
   @doc """
+  get an install event
+  Get a single install event. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `event_id` (String.t): event ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppInstallEvent.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_install_event(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppInstallEvent.t} | {:error, Tesla.Env.t}
+  def get_install_event(connection, install_id, event_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/installs/#{install_id}/events/#{event_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppInstallEvent},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  get events for an install
+  # Get Install Events  Return an event stream for an install. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, [%AppInstallEvent{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_install_events(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppInstallEvent.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def get_install_events(connection, install_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/installs/#{install_id}/events")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppInstallEvent},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get an installs inputs
 
   ### Parameters
