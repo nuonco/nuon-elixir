@@ -9,14 +9,12 @@ defmodule Nuon.Model.MetricsIncr do
   @derive Jason.Encoder
   defstruct [
     :name,
-    :tags,
-    :value
+    :tags
   ]
 
   @type t :: %__MODULE__{
     :name => String.t | nil,
-    :tags => [String.t] | nil,
-    :value => integer() | nil
+    :tags => [String.t] | nil
   }
 
   def decode(value) do
