@@ -188,6 +188,43 @@ defmodule Nuon.Api.Apps do
   end
 
   @doc """
+  create an app secret
+  Create an app secret that can be used to configure components. To reference an app secret, use `.nuon.secrets.<secret_name>`.  **NOTE** secrets can only be written, or deleted, not read. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `service_create_app_secret_request` (ServiceCreateAppSecretRequest): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppAppSecret.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_app_secret(Tesla.Env.client, String.t, Nuon.Model.ServiceCreateAppSecretRequest.t, keyword()) :: {:ok, Nuon.Model.AppAppSecret.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def create_app_secret(connection, app_id, service_create_app_secret_request, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/apps/#{app_id}/secret")
+      |> add_param(:body, :body, service_create_app_secret_request)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Nuon.Model.AppAppSecret},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   delete an app
 
   ### Parameters
@@ -207,6 +244,42 @@ defmodule Nuon.Api.Apps do
       %{}
       |> method(:delete)
       |> url("/v1/apps/#{app_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, false},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  delete an app secret
+  Delete an app secret. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `secret_id` (String.t): secret ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, boolean()}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec delete_app_secret(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, boolean()} | {:error, Tesla.Env.t}
+  def delete_app_secret(connection, app_id, secret_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:delete)
+      |> url("/v1/apps/#{app_id}/secret/#{secret_id}")
       |> Enum.into([])
 
     connection
@@ -594,6 +667,41 @@ defmodule Nuon.Api.Apps do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Nuon.Model.AppAppSandboxConfig},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  get app secrets
+  List all secrets for an app.  **NOTE** this does not return any sensitive values, as secrets are write only. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, [%AppAppSecret{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_app_secrets(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppAppSecret.t)} | {:error, Tesla.Env.t}
+  def get_app_secrets(connection, app_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/apps/#{app_id}/secrets")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppAppSecret},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
