@@ -96,7 +96,7 @@ defmodule Nuon.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - Nuon 0.19.100 - elixir"
+          "openapi-generator - Nuon 0.19.101 - elixir"
         )
       )
 
