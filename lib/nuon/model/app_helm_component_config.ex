@@ -17,7 +17,8 @@ defmodule Nuon.Model.AppHelmComponentConfig do
     :id,
     :public_git_vcs_config,
     :updated_at,
-    :values
+    :values,
+    :values_files
   ]
 
   @type t :: %__MODULE__{
@@ -30,7 +31,8 @@ defmodule Nuon.Model.AppHelmComponentConfig do
     :id => String.t | nil,
     :public_git_vcs_config => Nuon.Model.AppPublicGitVcsConfig.t | nil,
     :updated_at => String.t | nil,
-    :values => %{optional(String.t) => String.t} | nil
+    :values => %{optional(String.t) => String.t} | nil,
+    :values_files => [String.t] | nil
   }
 
   alias Nuon.Deserializer
