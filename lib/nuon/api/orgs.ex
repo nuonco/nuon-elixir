@@ -80,6 +80,42 @@ defmodule Nuon.Api.Orgs do
   end
 
   @doc """
+  Invite a user to the current org
+  Invite a user (by email) to an org.  This user will receive an email, and when they next log into the application will be added to the org. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `service_create_org_invite_request` (ServiceCreateOrgInviteRequest): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppOrgInvite.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec create_org_invite(Tesla.Env.client, Nuon.Model.ServiceCreateOrgInviteRequest.t, keyword()) :: {:ok, Nuon.Model.AppOrgInvite.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def create_org_invite(connection, service_create_org_invite_request, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/orgs/current/invites")
+      |> add_param(:body, :body, service_create_org_invite_request)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Nuon.Model.AppOrgInvite},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   Delete an org
 
   ### Parameters
@@ -177,6 +213,46 @@ defmodule Nuon.Api.Orgs do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Nuon.Model.AppOrgHealthCheck},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  Return org invites
+  Returns a list of all invites to the org. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:limit` (integer()): limit of health checks to return
+
+  ### Returns
+
+  - `{:ok, [%AppOrgInvite{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_org_invites(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppOrgInvite.t)} | {:error, Tesla.Env.t}
+  def get_org_invites(connection, opts \\ []) do
+    optional_params = %{
+      :limit => :query
+    }
+
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/orgs/current/invites")
+      |> add_optional_params(optional_params, opts)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppOrgInvite},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
