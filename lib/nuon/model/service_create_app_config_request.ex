@@ -9,19 +9,16 @@ defmodule Nuon.Model.ServiceCreateAppConfigRequest do
   @derive Jason.Encoder
   defstruct [
     :content,
-    :format
+    :generated_terraform_json
   ]
 
   @type t :: %__MODULE__{
     :content => String.t,
-    :format => Nuon.Model.AppAppConfigFmt.t
+    :generated_terraform_json => String.t | nil
   }
-
-  alias Nuon.Deserializer
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:format, :struct, Nuon.Model.AppAppConfigFmt)
   end
 end
 
