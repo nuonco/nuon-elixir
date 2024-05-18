@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :nuon, base_url: "https://ctl.prod.nuon.co"
+config :nuon, base_url: "https://api.nuon.co"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

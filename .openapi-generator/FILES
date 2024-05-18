@@ -20,8 +20,6 @@ lib/nuon/model/app_app_config_fmt.ex
 lib/nuon/model/app_app_config_status.ex
 lib/nuon/model/app_app_input.ex
 lib/nuon/model/app_app_input_config.ex
-lib/nuon/model/app_app_installer.ex
-lib/nuon/model/app_app_installer_metadata.ex
 lib/nuon/model/app_app_runner_config.ex
 lib/nuon/model/app_app_runner_type.ex
 lib/nuon/model/app_app_sandbox_config.ex
@@ -47,6 +45,9 @@ lib/nuon/model/app_install_deploy_type.ex
 lib/nuon/model/app_install_event.ex
 lib/nuon/model/app_install_inputs.ex
 lib/nuon/model/app_install_sandbox_run.ex
+lib/nuon/model/app_installer.ex
+lib/nuon/model/app_installer_metadata.ex
+lib/nuon/model/app_installer_type.ex
 lib/nuon/model/app_job_component_config.ex
 lib/nuon/model/app_operation_status.ex
 lib/nuon/model/app_org.ex
@@ -79,8 +80,6 @@ lib/nuon/model/service_connected_github_vcs_config_request.ex
 lib/nuon/model/service_connected_github_vcs_sandbox_config_request.ex
 lib/nuon/model/service_create_app_config_request.ex
 lib/nuon/model/service_create_app_input_config_request.ex
-lib/nuon/model/service_create_app_installer_request.ex
-lib/nuon/model/service_create_app_installer_request_links.ex
 lib/nuon/model/service_create_app_request.ex
 lib/nuon/model/service_create_app_runner_config_request.ex
 lib/nuon/model/service_create_app_sandbox_config_request.ex
@@ -99,6 +98,8 @@ lib/nuon/model/service_create_install_inputs_request.ex
 lib/nuon/model/service_create_install_request.ex
 lib/nuon/model/service_create_install_request_aws_account.ex
 lib/nuon/model/service_create_install_request_azure_account.ex
+lib/nuon/model/service_create_installer_request.ex
+lib/nuon/model/service_create_installer_request_metadata.ex
 lib/nuon/model/service_create_job_component_config_request.ex
 lib/nuon/model/service_create_org_invite_request.ex
 lib/nuon/model/service_create_org_request.ex
@@ -107,14 +108,12 @@ lib/nuon/model/service_create_terraform_module_component_config_request.ex
 lib/nuon/model/service_public_git_vcs_config_request.ex
 lib/nuon/model/service_public_git_vcs_sandbox_config_request.ex
 lib/nuon/model/service_publish_metric_input.ex
-lib/nuon/model/service_rendered_install.ex
 lib/nuon/model/service_rendered_installer.ex
 lib/nuon/model/service_repository.ex
 lib/nuon/model/service_update_app_request.ex
 lib/nuon/model/service_update_component_request.ex
 lib/nuon/model/service_update_install_request.ex
 lib/nuon/model/service_update_installer_request.ex
-lib/nuon/model/service_update_installer_request_links.ex
 lib/nuon/model/service_update_org_request.ex
 lib/nuon/model/statsd_event.ex
 lib/nuon/model/statsd_event_alert_type.ex

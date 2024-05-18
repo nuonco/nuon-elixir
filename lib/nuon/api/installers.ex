@@ -10,32 +10,32 @@ defmodule Nuon.Api.Installers do
   import Nuon.RequestBuilder
 
   @doc """
-  create an app installer
+  create an installer
 
   ### Parameters
 
   - `connection` (Nuon.Connection): Connection to server
-  - `service_create_app_installer_request` (ServiceCreateAppInstallerRequest): Input
+  - `service_create_installer_request` (ServiceCreateInstallerRequest): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
 
-  - `{:ok, Nuon.Model.AppAppInstaller.t}` on success
+  - `{:ok, Nuon.Model.AppInstaller.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec create_installer(Tesla.Env.client, Nuon.Model.ServiceCreateAppInstallerRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppInstaller.t} | {:error, Tesla.Env.t}
-  def create_installer(connection, service_create_app_installer_request, _opts \\ []) do
+  @spec create_installer(Tesla.Env.client, Nuon.Model.ServiceCreateInstallerRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppInstaller.t} | {:error, Tesla.Env.t}
+  def create_installer(connection, service_create_installer_request, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/installers")
-      |> add_param(:body, :body, service_create_app_installer_request)
+      |> add_param(:body, :body, service_create_installer_request)
       |> Enum.into([])
 
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {201, Nuon.Model.AppAppInstaller},
+      {201, Nuon.Model.AppInstaller},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
@@ -89,10 +89,10 @@ defmodule Nuon.Api.Installers do
 
   ### Returns
 
-  - `{:ok, Nuon.Model.AppAppInstaller.t}` on success
+  - `{:ok, Nuon.Model.AppInstaller.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_installer(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppInstaller.t} | {:error, Tesla.Env.t}
+  @spec get_installer(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppInstaller.t} | {:error, Tesla.Env.t}
   def get_installer(connection, installer_id, _opts \\ []) do
     request =
       %{}
@@ -103,42 +103,7 @@ defmodule Nuon.Api.Installers do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {200, Nuon.Model.AppAppInstaller},
-      {400, Nuon.Model.StderrErrResponse},
-      {401, Nuon.Model.StderrErrResponse},
-      {403, Nuon.Model.StderrErrResponse},
-      {404, Nuon.Model.StderrErrResponse},
-      {500, Nuon.Model.StderrErrResponse}
-    ])
-  end
-
-  @doc """
-  render an installer install
-
-  ### Parameters
-
-  - `connection` (Nuon.Connection): Connection to server
-  - `installer_slug` (String.t): installer slug or ID
-  - `install_id` (String.t): install id
-  - `opts` (keyword): Optional parameters
-
-  ### Returns
-
-  - `{:ok, Nuon.Model.AppInstall.t}` on success
-  - `{:error, Tesla.Env.t}` on failure
-  """
-  @spec get_installer_install(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.AppInstall.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def get_installer_install(connection, installer_slug, install_id, _opts \\ []) do
-    request =
-      %{}
-      |> method(:get)
-      |> url("/v1/installer/#{installer_slug}/install/#{install_id}")
-      |> Enum.into([])
-
-    connection
-    |> Connection.request(request)
-    |> evaluate_response([
-      {200, Nuon.Model.AppInstall},
+      {200, Nuon.Model.AppInstaller},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
@@ -158,10 +123,10 @@ defmodule Nuon.Api.Installers do
 
   ### Returns
 
-  - `{:ok, [%AppAppInstaller{}, ...]}` on success
+  - `{:ok, [%AppInstaller{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_installers(Tesla.Env.client, keyword()) :: {:ok, list(Nuon.Model.AppAppInstaller.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_installers(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstaller.t)} | {:error, Tesla.Env.t}
   def get_installers(connection, _opts \\ []) do
     request =
       %{}
@@ -172,43 +137,7 @@ defmodule Nuon.Api.Installers do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {200, Nuon.Model.AppAppInstaller},
-      {400, Nuon.Model.StderrErrResponse},
-      {401, Nuon.Model.StderrErrResponse},
-      {403, Nuon.Model.StderrErrResponse},
-      {404, Nuon.Model.StderrErrResponse},
-      {500, Nuon.Model.StderrErrResponse}
-    ])
-  end
-
-  @doc """
-  create an app install from an installer
-
-  ### Parameters
-
-  - `connection` (Nuon.Connection): Connection to server
-  - `installer_slug` (String.t): installer slug or ID
-  - `service_create_install_request` (ServiceCreateInstallRequest): Input
-  - `opts` (keyword): Optional parameters
-
-  ### Returns
-
-  - `{:ok, Nuon.Model.AppInstall.t}` on success
-  - `{:error, Tesla.Env.t}` on failure
-  """
-  @spec installer_create_install(Tesla.Env.client, String.t, Nuon.Model.ServiceCreateInstallRequest.t, keyword()) :: {:ok, Nuon.Model.AppInstall.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def installer_create_install(connection, installer_slug, service_create_install_request, _opts \\ []) do
-    request =
-      %{}
-      |> method(:post)
-      |> url("/v1/installer/#{installer_slug}/installs")
-      |> add_param(:body, :body, service_create_install_request)
-      |> Enum.into([])
-
-    connection
-    |> Connection.request(request)
-    |> evaluate_response([
-      {201, Nuon.Model.AppInstall},
+      {200, Nuon.Model.AppInstaller},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
@@ -223,7 +152,7 @@ defmodule Nuon.Api.Installers do
   ### Parameters
 
   - `connection` (Nuon.Connection): Connection to server
-  - `installer_slug` (String.t): installer slug or ID
+  - `installer_id` (String.t): installer ID
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -232,53 +161,17 @@ defmodule Nuon.Api.Installers do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec render_installer(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.ServiceRenderedInstaller.t} | {:error, Tesla.Env.t}
-  def render_installer(connection, installer_slug, _opts \\ []) do
+  def render_installer(connection, installer_id, _opts \\ []) do
     request =
       %{}
       |> method(:get)
-      |> url("/v1/installer/#{installer_slug}/render")
+      |> url("/v1/installer/#{installer_id}/render")
       |> Enum.into([])
 
     connection
     |> Connection.request(request)
     |> evaluate_response([
       {200, Nuon.Model.ServiceRenderedInstaller},
-      {400, Nuon.Model.StderrErrResponse},
-      {401, Nuon.Model.StderrErrResponse},
-      {403, Nuon.Model.StderrErrResponse},
-      {404, Nuon.Model.StderrErrResponse},
-      {500, Nuon.Model.StderrErrResponse}
-    ])
-  end
-
-  @doc """
-  render an installer install
-  Render an install in the context of an installer. 
-
-  ### Parameters
-
-  - `connection` (Nuon.Connection): Connection to server
-  - `installer_slug` (String.t): installer slug or ID
-  - `install_id` (String.t): install id
-  - `opts` (keyword): Optional parameters
-
-  ### Returns
-
-  - `{:ok, Nuon.Model.ServiceRenderedInstall.t}` on success
-  - `{:error, Tesla.Env.t}` on failure
-  """
-  @spec render_installer_install(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.ServiceRenderedInstall.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
-  def render_installer_install(connection, installer_slug, install_id, _opts \\ []) do
-    request =
-      %{}
-      |> method(:get)
-      |> url("/v1/installer/#{installer_slug}/install/#{install_id}/render")
-      |> Enum.into([])
-
-    connection
-    |> Connection.request(request)
-    |> evaluate_response([
-      {200, Nuon.Model.ServiceRenderedInstall},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
@@ -299,10 +192,10 @@ defmodule Nuon.Api.Installers do
 
   ### Returns
 
-  - `{:ok, Nuon.Model.AppAppInstaller.t}` on success
+  - `{:ok, Nuon.Model.AppInstaller.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec update_installer(Tesla.Env.client, String.t, Nuon.Model.ServiceUpdateInstallerRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppInstaller.t} | {:error, Tesla.Env.t}
+  @spec update_installer(Tesla.Env.client, String.t, Nuon.Model.ServiceUpdateInstallerRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppInstaller.t} | {:error, Tesla.Env.t}
   def update_installer(connection, installer_id, service_update_installer_request, _opts \\ []) do
     request =
       %{}
@@ -314,7 +207,7 @@ defmodule Nuon.Api.Installers do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {201, Nuon.Model.AppAppInstaller},
+      {201, Nuon.Model.AppInstaller},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},

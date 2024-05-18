@@ -8,19 +8,19 @@ defmodule Nuon.Connection do
   Additional middleware can be set in the compile-time or runtime configuration:
 
       config :tesla, Nuon.Connection,
-        base_url: "https://ctl.prod.nuon.co",
+        base_url: "https://api.nuon.co",
         adapter: Tesla.Adapter.Hackney
 
   The default base URL can also be set as:
 
       config :nuon,
-        :base_url, "https://ctl.prod.nuon.co"
+        :base_url, "https://api.nuon.co"
   """
 
   @default_base_url Application.compile_env(
                       :nuon,
                       :base_url,
-                      "https://ctl.prod.nuon.co"
+                      "https://api.nuon.co"
                     )
 
 
@@ -96,7 +96,7 @@ defmodule Nuon.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - Nuon 0.19.123 - elixir"
+          "openapi-generator - Nuon 0.19.132 - elixir"
         )
       )
 
