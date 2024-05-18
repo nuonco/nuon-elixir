@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:nuon, "~> 0.19.123"}]
+  [{:nuon, "~> 0.19.132"}]
 end
 ```
 
@@ -31,14 +31,14 @@ You can override the URL of your server (e.g. if you have a separate development
 configuration files).
 
 ```elixir
-config :nuon, base_url: "https://ctl.prod.nuon.co"
+config :nuon, base_url: "https://api.nuon.co"
 ```
 
 Multiple clients for the same API with different URLs can be created passing different `base_url`s when calling
 `Nuon.Connection.new/1`:
 
 ```elixir
-client = Nuon.Connection.new(base_url: "https://ctl.prod.nuon.co")
+client = Nuon.Connection.new(base_url: "https://api.nuon.co")
 ```
 
 [exdoc]: https://github.com/elixir-lang/ex_doc
