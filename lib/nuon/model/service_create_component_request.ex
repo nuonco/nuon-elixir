@@ -9,12 +9,14 @@ defmodule Nuon.Model.ServiceCreateComponentRequest do
   @derive Jason.Encoder
   defstruct [
     :dependencies,
-    :name
+    :name,
+    :var_name
   ]
 
   @type t :: %__MODULE__{
     :dependencies => [String.t] | nil,
-    :name => String.t
+    :name => String.t,
+    :var_name => String.t | nil
   }
 
   def decode(value) do

@@ -18,7 +18,8 @@ defmodule Nuon.Model.AppComponent do
     :name,
     :status,
     :status_description,
-    :updated_at
+    :updated_at,
+    :var_name
   ]
 
   @type t :: %__MODULE__{
@@ -32,7 +33,8 @@ defmodule Nuon.Model.AppComponent do
     :name => String.t | nil,
     :status => String.t | nil,
     :status_description => String.t | nil,
-    :updated_at => String.t | nil
+    :updated_at => String.t | nil,
+    :var_name => String.t | nil
   }
 
   alias Nuon.Deserializer

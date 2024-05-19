@@ -8,10 +8,12 @@ defmodule Nuon.Model.ServiceUpdateAppRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :description,
     :name
   ]
 
   @type t :: %__MODULE__{
+    :description => String.t | nil,
     :name => String.t | nil
   }
 
