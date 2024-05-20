@@ -29,6 +29,7 @@ lib/nuon/model/app_aws_account.ex
 lib/nuon/model/app_awsecr_image_config.ex
 lib/nuon/model/app_azure_account.ex
 lib/nuon/model/app_cloud_platform.ex
+lib/nuon/model/app_cloud_platform_region.ex
 lib/nuon/model/app_component.ex
 lib/nuon/model/app_component_build.ex
 lib/nuon/model/app_component_config_connection.ex
