@@ -152,6 +152,43 @@ defmodule Nuon.Api.Installs do
   end
 
   @doc """
+  deprovision an install
+  Deprovision an install sandbox. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `body` (map()): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec deprovision_install(Tesla.Env.client, String.t, %{optional(String.t) => }, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def deprovision_install(connection, install_id, body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/installs/#{install_id}/deprovision")
+      |> add_param(:body, :body, body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, false},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get all installs for an app
 
   ### Parameters
@@ -773,6 +810,43 @@ defmodule Nuon.Api.Installs do
   end
 
   @doc """
+  reprovision an install
+  Reprovision an install sandbox.  
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `body` (map()): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec reprovision_install(Tesla.Env.client, String.t, %{optional(String.t) => }, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def reprovision_install(connection, install_id, body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/installs/#{install_id}/reprovision")
+      |> add_param(:body, :body, body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, false},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   teardown an install component
 
   ### Parameters
@@ -800,6 +874,43 @@ defmodule Nuon.Api.Installs do
     |> Connection.request(request)
     |> evaluate_response([
       {201, Nuon.Model.AppInstallDeploy},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  teardown an install's components
+  Teardown all components on an install. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `body` (map()): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec teardown_install_components(Tesla.Env.client, String.t, %{optional(String.t) => }, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def teardown_install_components(connection, install_id, body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/installs/#{install_id}/components/teardown-all")
+      |> add_param(:body, :body, body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, false},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},
