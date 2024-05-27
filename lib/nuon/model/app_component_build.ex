@@ -9,6 +9,7 @@ defmodule Nuon.Model.AppComponentBuild do
   @derive Jason.Encoder
   defstruct [
     :component_config_connection_id,
+    :component_config_version,
     :component_id,
     :component_name,
     :created_at,
@@ -26,6 +27,7 @@ defmodule Nuon.Model.AppComponentBuild do
 
   @type t :: %__MODULE__{
     :component_config_connection_id => String.t | nil,
+    :component_config_version => integer() | nil,
     :component_id => String.t | nil,
     :component_name => String.t | nil,
     :created_at => String.t | nil,

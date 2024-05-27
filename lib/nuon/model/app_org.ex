@@ -16,6 +16,7 @@ defmodule Nuon.Model.AppOrg do
     :id,
     :latest_health_check,
     :name,
+    :notifications_config,
     :sandbox_mode,
     :status,
     :status_description,
@@ -33,6 +34,7 @@ defmodule Nuon.Model.AppOrg do
     :id => String.t | nil,
     :latest_health_check => Nuon.Model.AppOrgHealthCheck.t | nil,
     :name => String.t | nil,
+    :notifications_config => Nuon.Model.AppNotificationsConfig.t | nil,
     :sandbox_mode => boolean() | nil,
     :status => String.t | nil,
     :status_description => String.t | nil,
@@ -48,6 +50,7 @@ defmodule Nuon.Model.AppOrg do
      |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
      |> Deserializer.deserialize(:health_checks, :list, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:latest_health_check, :struct, Nuon.Model.AppOrgHealthCheck)
+     |> Deserializer.deserialize(:notifications_config, :struct, Nuon.Model.AppNotificationsConfig)
      |> Deserializer.deserialize(:users, :list, Nuon.Model.AppUserOrg)
      |> Deserializer.deserialize(:vcs_connections, :list, Nuon.Model.AppVcsConnection)
   end

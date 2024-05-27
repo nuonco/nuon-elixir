@@ -9,6 +9,7 @@ defmodule Nuon.Model.AppInstallDeploy do
   @derive Jason.Encoder
   defstruct [
     :build_id,
+    :component_config_version,
     :component_id,
     :component_name,
     :created_at,
@@ -26,6 +27,7 @@ defmodule Nuon.Model.AppInstallDeploy do
 
   @type t :: %__MODULE__{
     :build_id => String.t | nil,
+    :component_config_version => integer() | nil,
     :component_id => String.t | nil,
     :component_name => String.t | nil,
     :created_at => String.t | nil,
