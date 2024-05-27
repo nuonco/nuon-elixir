@@ -18,7 +18,8 @@ defmodule Nuon.Model.AppComponentConfigConnection do
     :id,
     :job,
     :terraform_module,
-    :updated_at
+    :updated_at,
+    :version
   ]
 
   @type t :: %__MODULE__{
@@ -32,7 +33,8 @@ defmodule Nuon.Model.AppComponentConfigConnection do
     :id => String.t | nil,
     :job => Nuon.Model.AppJobComponentConfig.t | nil,
     :terraform_module => Nuon.Model.AppTerraformModuleComponentConfig.t | nil,
-    :updated_at => String.t | nil
+    :updated_at => String.t | nil,
+    :version => integer() | nil
   }
 
   alias Nuon.Deserializer

@@ -19,7 +19,8 @@ defmodule Nuon.Model.AppAppConfig do
     :org_id,
     :status,
     :status_description,
-    :updated_at
+    :updated_at,
+    :version
   ]
 
   @type t :: %__MODULE__{
@@ -34,7 +35,8 @@ defmodule Nuon.Model.AppAppConfig do
     :org_id => String.t | nil,
     :status => Nuon.Model.AppAppConfigStatus.t | nil,
     :status_description => String.t | nil,
-    :updated_at => String.t | nil
+    :updated_at => String.t | nil,
+    :version => integer() | nil
   }
 
   alias Nuon.Deserializer

@@ -50,6 +50,7 @@ lib/nuon/model/app_installer.ex
 lib/nuon/model/app_installer_metadata.ex
 lib/nuon/model/app_installer_type.ex
 lib/nuon/model/app_job_component_config.ex
+lib/nuon/model/app_notifications_config.ex
 lib/nuon/model/app_operation_status.ex
 lib/nuon/model/app_org.ex
 lib/nuon/model/app_org_health_check.ex
@@ -66,7 +67,6 @@ lib/nuon/model/app_user_org.ex
 lib/nuon/model/app_user_token.ex
 lib/nuon/model/app_vcs_connection.ex
 lib/nuon/model/app_vcs_connection_commit.ex
-lib/nuon/model/github_com_powertoolsdev_mono_services_ctl_api_internal_app_installs_worker_signals_operation.ex
 lib/nuon/model/metrics_decr.ex
 lib/nuon/model/metrics_event.ex
 lib/nuon/model/metrics_incr.ex

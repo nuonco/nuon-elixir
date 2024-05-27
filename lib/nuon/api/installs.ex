@@ -152,6 +152,43 @@ defmodule Nuon.Api.Installs do
   end
 
   @doc """
+  deploy all components on an install
+  Deploy all components to an install.  This walks the graph order of the install's app, and will trigger a deploy for each on the specified install. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `body` (map()): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, String.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec deploy_install_components(Tesla.Env.client, String.t, %{optional(String.t) => }, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, String.t} | {:error, Tesla.Env.t}
+  def deploy_install_components(connection, install_id, body, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/installs/#{install_id}/components/deploy-all")
+      |> add_param(:body, :body, body)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, false},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   deprovision an install
   Deprovision an install sandbox. 
 
