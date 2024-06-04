@@ -20,6 +20,7 @@ lib/nuon/model/app_app_config_fmt.ex
 lib/nuon/model/app_app_config_status.ex
 lib/nuon/model/app_app_input.ex
 lib/nuon/model/app_app_input_config.ex
+lib/nuon/model/app_app_input_group.ex
 lib/nuon/model/app_app_runner_config.ex
 lib/nuon/model/app_app_runner_type.ex
 lib/nuon/model/app_app_sandbox_config.ex
@@ -74,6 +75,7 @@ lib/nuon/model/metrics_timing.ex
 lib/nuon/model/planv1_plan.ex
 lib/nuon/model/service_app_config_template.ex
 lib/nuon/model/service_app_config_template_type.ex
+lib/nuon/model/service_app_group_request.ex
 lib/nuon/model/service_app_input_request.ex
 lib/nuon/model/service_aws_ecr_image_config_request.ex
 lib/nuon/model/service_cli_config.ex

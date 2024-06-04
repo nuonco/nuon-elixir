@@ -8,10 +8,12 @@ defmodule Nuon.Model.ServiceCreateAppInputConfigRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :groups,
     :inputs
   ]
 
   @type t :: %__MODULE__{
+    :groups => %{optional(String.t) => Nuon.Model.ServiceAppGroupRequest.t},
     :inputs => %{optional(String.t) => Nuon.Model.ServiceAppInputRequest.t}
   }
 
@@ -19,6 +21,7 @@ defmodule Nuon.Model.ServiceCreateAppInputConfigRequest do
 
   def decode(value) do
     value
+     |> Deserializer.deserialize(:groups, :map, Nuon.Model.ServiceAppGroupRequest)
      |> Deserializer.deserialize(:inputs, :map, Nuon.Model.ServiceAppInputRequest)
   end
 end
