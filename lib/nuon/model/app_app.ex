@@ -21,7 +21,6 @@ defmodule Nuon.Model.AppApp do
     :org_id,
     :runner_config,
     :sandbox_config,
-    :slack_webhook_url,
     :status,
     :status_description,
     :updated_at
@@ -41,7 +40,6 @@ defmodule Nuon.Model.AppApp do
     :org_id => String.t | nil,
     :runner_config => Nuon.Model.AppAppRunnerConfig.t | nil,
     :sandbox_config => Nuon.Model.AppAppSandboxConfig.t | nil,
-    :slack_webhook_url => String.t | nil,
     :status => String.t | nil,
     :status_description => String.t | nil,
     :updated_at => String.t | nil
