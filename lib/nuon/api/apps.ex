@@ -417,7 +417,7 @@ defmodule Nuon.Api.Apps do
   - `{:ok, [%AppAppConfig{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppAppConfig.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_app_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppAppConfig.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_app_configs(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -451,7 +451,7 @@ defmodule Nuon.Api.Apps do
   - `{:ok, [%AppAppInputConfig{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_input_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppAppInputConfig.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_app_input_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppAppInputConfig.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_app_input_configs(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -554,7 +554,7 @@ defmodule Nuon.Api.Apps do
   - `{:ok, [%AppAppRunnerConfig{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_runner_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppAppRunnerConfig.t)} | {:error, Tesla.Env.t}
+  @spec get_app_runner_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppAppRunnerConfig.t]} | {:error, Tesla.Env.t}
   def get_app_runner_configs(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -622,7 +622,7 @@ defmodule Nuon.Api.Apps do
   - `{:ok, [%AppAppSandboxConfig{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_sandbox_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppAppSandboxConfig.t)} | {:error, Tesla.Env.t}
+  @spec get_app_sandbox_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppAppSandboxConfig.t]} | {:error, Tesla.Env.t}
   def get_app_sandbox_configs(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -691,7 +691,7 @@ defmodule Nuon.Api.Apps do
   - `{:ok, [%AppAppSecret{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_secrets(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppAppSecret.t)} | {:error, Tesla.Env.t}
+  @spec get_app_secrets(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppAppSecret.t]} | {:error, Tesla.Env.t}
   def get_app_secrets(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -724,7 +724,7 @@ defmodule Nuon.Api.Apps do
   - `{:ok, [%AppApp{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_apps(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppApp.t)} | {:error, Tesla.Env.t}
+  @spec get_apps(Tesla.Env.client, keyword()) :: {:ok, [Nuon.Model.AppApp.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_apps(connection, _opts \\ []) do
     request =
       %{}

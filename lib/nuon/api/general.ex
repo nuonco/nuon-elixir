@@ -57,7 +57,7 @@ defmodule Nuon.Api.General do
   - `{:ok, [%AppCloudPlatformRegion{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_cloud_platform_regions(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppCloudPlatformRegion.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_cloud_platform_regions(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppCloudPlatformRegion.t]} | {:error, Tesla.Env.t}
   def get_cloud_platform_regions(connection, cloud_platform, _opts \\ []) do
     request =
       %{}

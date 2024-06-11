@@ -309,7 +309,7 @@ defmodule Nuon.Api.Components do
   - `{:ok, [%AppComponent{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_components(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppComponent.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_app_components(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppComponent.t]} | {:error, Tesla.Env.t}
   def get_app_components(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -449,7 +449,7 @@ defmodule Nuon.Api.Components do
   - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_component_build_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(any())} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_component_build_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [any()]} | {:error, Tesla.Env.t}
   def get_component_build_logs(connection, component_id, build_id, _opts \\ []) do
     request =
       %{}
@@ -520,7 +520,7 @@ defmodule Nuon.Api.Components do
   - `{:ok, [%AppComponentBuild{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_component_builds(Tesla.Env.client, keyword()) :: {:ok, list(Nuon.Model.AppComponentBuild.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_component_builds(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppComponentBuild.t]} | {:error, Tesla.Env.t}
   def get_component_builds(connection, opts \\ []) do
     optional_params = %{
       :limit => :query,
@@ -561,7 +561,7 @@ defmodule Nuon.Api.Components do
   - `{:ok, [%AppComponentConfigConnection{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_component_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppComponentConfigConnection.t)} | {:error, Tesla.Env.t}
+  @spec get_component_configs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppComponentConfigConnection.t]} | {:error, Tesla.Env.t}
   def get_component_configs(connection, component_id, _opts \\ []) do
     request =
       %{}
@@ -662,7 +662,7 @@ defmodule Nuon.Api.Components do
   - `{:ok, [%AppComponent{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_org_components(Tesla.Env.client, keyword()) :: {:ok, list(Nuon.Model.AppComponent.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_org_components(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppComponent.t]} | {:error, Tesla.Env.t}
   def get_org_components(connection, _opts \\ []) do
     request =
       %{}

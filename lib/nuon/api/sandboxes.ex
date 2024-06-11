@@ -57,7 +57,7 @@ defmodule Nuon.Api.Sandboxes do
   - `{:ok, [%AppSandboxRelease{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_sandbox_releases(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppSandboxRelease.t)} | {:error, Tesla.Env.t}
+  @spec get_sandbox_releases(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppSandboxRelease.t]} | {:error, Tesla.Env.t}
   def get_sandbox_releases(connection, sandbox_id, _opts \\ []) do
     request =
       %{}
@@ -90,7 +90,7 @@ defmodule Nuon.Api.Sandboxes do
   - `{:ok, [%AppSandbox{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_sandboxes(Tesla.Env.client, keyword()) :: {:ok, list(Nuon.Model.AppSandbox.t)} | {:error, Tesla.Env.t}
+  @spec get_sandboxes(Tesla.Env.client, keyword()) :: {:ok, [Nuon.Model.AppSandbox.t]} | {:error, Tesla.Env.t}
   def get_sandboxes(connection, _opts \\ []) do
     request =
       %{}
