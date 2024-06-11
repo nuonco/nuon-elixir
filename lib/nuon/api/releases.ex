@@ -59,7 +59,7 @@ defmodule Nuon.Api.Releases do
   - `{:ok, [%AppComponentRelease{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_releases(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppComponentRelease.t)} | {:error, Tesla.Env.t}
+  @spec get_app_releases(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppComponentRelease.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_app_releases(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -93,7 +93,7 @@ defmodule Nuon.Api.Releases do
   - `{:ok, [%AppComponentRelease{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_component_releases(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppComponentRelease.t)} | {:error, Tesla.Env.t}
+  @spec get_component_releases(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppComponentRelease.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_component_releases(connection, component_id, _opts \\ []) do
     request =
       %{}
@@ -161,7 +161,7 @@ defmodule Nuon.Api.Releases do
   - `{:ok, [%AppComponentReleaseStep{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_release_steps(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppComponentReleaseStep.t)} | {:error, Tesla.Env.t}
+  @spec get_release_steps(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppComponentReleaseStep.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_release_steps(connection, release_id, _opts \\ []) do
     request =
       %{}

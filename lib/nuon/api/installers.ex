@@ -126,7 +126,7 @@ defmodule Nuon.Api.Installers do
   - `{:ok, [%AppInstaller{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_installers(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstaller.t)} | {:error, Tesla.Env.t}
+  @spec get_installers(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppInstaller.t]} | {:error, Tesla.Env.t}
   def get_installers(connection, _opts \\ []) do
     request =
       %{}

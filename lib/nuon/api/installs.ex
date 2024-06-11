@@ -239,7 +239,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstall{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_app_installs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstall.t)} | {:error, Tesla.Env.t}
+  @spec get_app_installs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppInstall.t]} | {:error, Tesla.Env.t}
   def get_app_installs(connection, app_id, _opts \\ []) do
     request =
       %{}
@@ -377,7 +377,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstallDeploy{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_component_deploys(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstallDeploy.t)} | {:error, Tesla.Env.t}
+  @spec get_install_component_deploys(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, [Nuon.Model.AppInstallDeploy.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_install_component_deploys(connection, install_id, component_id, _opts \\ []) do
     request =
       %{}
@@ -446,7 +446,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstallComponent{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_components(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppInstallComponent.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_components(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppInstallComponent.t]} | {:error, Tesla.Env.t}
   def get_install_components(connection, install_id, _opts \\ []) do
     request =
       %{}
@@ -516,7 +516,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_deploy_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(any())} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_deploy_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [any()]} | {:error, Tesla.Env.t}
   def get_install_deploy_logs(connection, install_id, deploy_id, _opts \\ []) do
     request =
       %{}
@@ -585,7 +585,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstallDeploy{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_deploys(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstallDeploy.t)} | {:error, Tesla.Env.t}
+  @spec get_install_deploys(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppInstallDeploy.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_install_deploys(connection, install_id, _opts \\ []) do
     request =
       %{}
@@ -656,7 +656,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstallEvent{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_events(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppInstallEvent.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_events(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppInstallEvent.t]} | {:error, Tesla.Env.t}
   def get_install_events(connection, install_id, _opts \\ []) do
     request =
       %{}
@@ -690,7 +690,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstallInputs{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_inputs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstallInputs.t)} | {:error, Tesla.Env.t}
+  @spec get_install_inputs(Tesla.Env.client, String.t, keyword()) :: {:ok, [Nuon.Model.AppInstallInputs.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_install_inputs(connection, install_id, _opts \\ []) do
     request =
       %{}
@@ -759,7 +759,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AnyType{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_sandbox_run_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, list(any())} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_sandbox_run_logs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [any()]} | {:error, Tesla.Env.t}
   def get_install_sandbox_run_logs(connection, install_id, run_id, _opts \\ []) do
     request =
       %{}
@@ -793,7 +793,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstallSandboxRun{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_install_sandbox_runs(Tesla.Env.client, String.t, keyword()) :: {:ok, list(Nuon.Model.AppInstallSandboxRun.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_install_sandbox_runs(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppInstallSandboxRun.t]} | {:error, Tesla.Env.t}
   def get_install_sandbox_runs(connection, install_id, _opts \\ []) do
     request =
       %{}
@@ -826,7 +826,7 @@ defmodule Nuon.Api.Installs do
   - `{:ok, [%AppInstall{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_org_installs(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppInstall.t)} | {:error, Tesla.Env.t}
+  @spec get_org_installs(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppInstall.t]} | {:error, Tesla.Env.t}
   def get_org_installs(connection, _opts \\ []) do
     request =
       %{}

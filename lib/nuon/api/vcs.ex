@@ -92,7 +92,7 @@ defmodule Nuon.Api.Vcs do
   - `{:ok, [%ServiceRepository{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_all_vcs_connected_repos(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.ServiceRepository.t)} | {:error, Tesla.Env.t}
+  @spec get_all_vcs_connected_repos(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.ServiceRepository.t]} | {:error, Tesla.Env.t}
   def get_all_vcs_connected_repos(connection, _opts \\ []) do
     request =
       %{}
@@ -125,7 +125,7 @@ defmodule Nuon.Api.Vcs do
   - `{:ok, [%AppVcsConnection{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_org_vcs_connections(Tesla.Env.client, keyword()) :: {:ok, list(Nuon.Model.AppVcsConnection.t)} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  @spec get_org_vcs_connections(Tesla.Env.client, keyword()) :: {:ok, [Nuon.Model.AppVcsConnection.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_org_vcs_connections(connection, _opts \\ []) do
     request =
       %{}

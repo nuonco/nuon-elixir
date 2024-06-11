@@ -196,7 +196,7 @@ defmodule Nuon.Api.Orgs do
   - `{:ok, [%AppOrgHealthCheck{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_org_health_checks(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppOrgHealthCheck.t)} | {:error, Tesla.Env.t}
+  @spec get_org_health_checks(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppOrgHealthCheck.t]} | {:error, Tesla.Env.t}
   def get_org_health_checks(connection, opts \\ []) do
     optional_params = %{
       :limit => :query
@@ -236,7 +236,7 @@ defmodule Nuon.Api.Orgs do
   - `{:ok, [%AppOrgInvite{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_org_invites(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppOrgInvite.t)} | {:error, Tesla.Env.t}
+  @spec get_org_invites(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppOrgInvite.t]} | {:error, Tesla.Env.t}
   def get_org_invites(connection, opts \\ []) do
     optional_params = %{
       :limit => :query
@@ -274,7 +274,7 @@ defmodule Nuon.Api.Orgs do
   - `{:ok, [%AppOrg{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_orgs(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, list(Nuon.Model.AppOrg.t)} | {:error, Tesla.Env.t}
+  @spec get_orgs(Tesla.Env.client, keyword()) :: {:ok, [Nuon.Model.AppOrg.t]} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_orgs(connection, _opts \\ []) do
     request =
       %{}
