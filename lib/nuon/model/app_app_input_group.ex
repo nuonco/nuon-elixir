@@ -16,7 +16,6 @@ defmodule Nuon.Model.AppAppInputGroup do
     :description,
     :display_name,
     :id,
-    :is_default,
     :name,
     :org_id,
     :updated_at
@@ -31,7 +30,6 @@ defmodule Nuon.Model.AppAppInputGroup do
     :description => String.t | nil,
     :display_name => String.t | nil,
     :id => String.t | nil,
-    :is_default => boolean() | nil,
     :name => String.t | nil,
     :org_id => String.t | nil,
     :updated_at => String.t | nil
