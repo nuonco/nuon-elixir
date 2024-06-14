@@ -87,10 +87,10 @@ defmodule Nuon.Api.General do
 
   ### Returns
 
-  - `{:ok, Nuon.Model.AppUserToken.t}` on success
+  - `{:ok, Nuon.Model.AppAccount.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_current_user(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppUserToken.t} | {:error, Tesla.Env.t}
+  @spec get_current_user(Tesla.Env.client, keyword()) :: {:ok, Nuon.Model.AppAccount.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def get_current_user(connection, _opts \\ []) do
     request =
       %{}
@@ -101,7 +101,7 @@ defmodule Nuon.Api.General do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {200, Nuon.Model.AppUserToken},
+      {200, Nuon.Model.AppAccount},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},

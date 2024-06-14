@@ -27,7 +27,7 @@ defmodule Nuon.Model.AppAppConfig do
     :app_id => String.t | nil,
     :content => String.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :format => Nuon.Model.AppAppConfigFmt.t | nil,
     :generated_terraform => String.t | nil,
@@ -43,7 +43,7 @@ defmodule Nuon.Model.AppAppConfig do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:format, :struct, Nuon.Model.AppAppConfigFmt)
      |> Deserializer.deserialize(:status, :struct, Nuon.Model.AppAppConfigStatus)
   end

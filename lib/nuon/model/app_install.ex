@@ -35,7 +35,7 @@ defmodule Nuon.Model.AppInstall do
     :aws_account => Nuon.Model.AppAwsAccount.t | nil,
     :azure_account => Nuon.Model.AppAzureAccount.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :install_components => [Nuon.Model.AppInstallComponent.t] | nil,
@@ -57,7 +57,7 @@ defmodule Nuon.Model.AppInstall do
      |> Deserializer.deserialize(:app_sandbox_config, :struct, Nuon.Model.AppAppSandboxConfig)
      |> Deserializer.deserialize(:aws_account, :struct, Nuon.Model.AppAwsAccount)
      |> Deserializer.deserialize(:azure_account, :struct, Nuon.Model.AppAzureAccount)
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:install_components, :list, Nuon.Model.AppInstallComponent)
      |> Deserializer.deserialize(:install_events, :list, Nuon.Model.AppInstallEvent)
      |> Deserializer.deserialize(:install_inputs, :list, Nuon.Model.AppInstallInputs)

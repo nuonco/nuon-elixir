@@ -31,7 +31,7 @@ defmodule Nuon.Model.AppInstallDeploy do
     :component_id => String.t | nil,
     :component_name => String.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :install_component_id => String.t | nil,
@@ -47,7 +47,7 @@ defmodule Nuon.Model.AppInstallDeploy do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:install_deploy_type, :struct, Nuon.Model.AppInstallDeployType)
   end
 end

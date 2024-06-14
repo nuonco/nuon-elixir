@@ -23,7 +23,7 @@ defmodule Nuon.Model.AppInstallEvent do
 
   @type t :: %__MODULE__{
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :install_id => String.t | nil,
@@ -39,7 +39,7 @@ defmodule Nuon.Model.AppInstallEvent do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:operation_status, :struct, Nuon.Model.AppOperationStatus)
   end
 end

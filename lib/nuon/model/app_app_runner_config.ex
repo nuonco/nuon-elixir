@@ -25,7 +25,7 @@ defmodule Nuon.Model.AppAppRunnerConfig do
     :app_runner_type => Nuon.Model.AppAppRunnerType.t | nil,
     :cloud_platform => Nuon.Model.AppCloudPlatform.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :env_vars => %{optional(String.t) => String.t} | nil,
     :id => String.t | nil,
@@ -39,7 +39,7 @@ defmodule Nuon.Model.AppAppRunnerConfig do
     value
      |> Deserializer.deserialize(:app_runner_type, :struct, Nuon.Model.AppAppRunnerType)
      |> Deserializer.deserialize(:cloud_platform, :struct, Nuon.Model.AppCloudPlatform)
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
   end
 end
 

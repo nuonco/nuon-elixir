@@ -23,7 +23,7 @@ defmodule Nuon.Model.AppInstallSandboxRun do
   @type t :: %__MODULE__{
     :app_sandbox_config => Nuon.Model.AppAppSandboxConfig.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :install_id => String.t | nil,
@@ -38,7 +38,7 @@ defmodule Nuon.Model.AppInstallSandboxRun do
   def decode(value) do
     value
      |> Deserializer.deserialize(:app_sandbox_config, :struct, Nuon.Model.AppAppSandboxConfig)
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:run_type, :struct, Nuon.Model.AppSandboxRunType)
   end
 end

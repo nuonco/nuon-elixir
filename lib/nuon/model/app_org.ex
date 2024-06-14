@@ -21,13 +21,12 @@ defmodule Nuon.Model.AppOrg do
     :status,
     :status_description,
     :updated_at,
-    :users,
     :vcs_connections
   ]
 
   @type t :: %__MODULE__{
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :custom_cert => boolean() | nil,
     :health_checks => [Nuon.Model.AppOrgHealthCheck.t] | nil,
@@ -39,7 +38,6 @@ defmodule Nuon.Model.AppOrg do
     :status => String.t | nil,
     :status_description => String.t | nil,
     :updated_at => String.t | nil,
-    :users => [Nuon.Model.AppUserOrg.t] | nil,
     :vcs_connections => [Nuon.Model.AppVcsConnection.t] | nil
   }
 
@@ -47,11 +45,10 @@ defmodule Nuon.Model.AppOrg do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:health_checks, :list, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:latest_health_check, :struct, Nuon.Model.AppOrgHealthCheck)
      |> Deserializer.deserialize(:notifications_config, :struct, Nuon.Model.AppNotificationsConfig)
-     |> Deserializer.deserialize(:users, :list, Nuon.Model.AppUserOrg)
      |> Deserializer.deserialize(:vcs_connections, :list, Nuon.Model.AppVcsConnection)
   end
 end

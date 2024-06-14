@@ -25,7 +25,7 @@ defmodule Nuon.Model.AppPublicGitVcsConfig do
     :component_config_id => String.t | nil,
     :component_config_type => String.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :directory => String.t | nil,
     :id => String.t | nil,
@@ -37,7 +37,7 @@ defmodule Nuon.Model.AppPublicGitVcsConfig do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
   end
 end
 

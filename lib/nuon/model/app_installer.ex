@@ -22,7 +22,7 @@ defmodule Nuon.Model.AppInstaller do
   @type t :: %__MODULE__{
     :apps => [Nuon.Model.AppApp.t] | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :id => String.t | nil,
     :metadata => Nuon.Model.AppInstallerMetadata.t | nil,
@@ -36,7 +36,7 @@ defmodule Nuon.Model.AppInstaller do
   def decode(value) do
     value
      |> Deserializer.deserialize(:apps, :list, Nuon.Model.AppApp)
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:metadata, :struct, Nuon.Model.AppInstallerMetadata)
      |> Deserializer.deserialize(:type, :struct, Nuon.Model.AppInstallerType)
   end
