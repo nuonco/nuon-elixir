@@ -11,7 +11,6 @@ defmodule Nuon.Model.ServiceCreateAppSandboxConfigRequest do
     :connected_github_vcs_config,
     :public_git_vcs_config,
     :sandbox_inputs,
-    :sandbox_release_id,
     :terraform_version
   ]
 
@@ -19,7 +18,6 @@ defmodule Nuon.Model.ServiceCreateAppSandboxConfigRequest do
     :connected_github_vcs_config => Nuon.Model.ServiceConnectedGithubVcsSandboxConfigRequest.t | nil,
     :public_git_vcs_config => Nuon.Model.ServicePublicGitVcsSandboxConfigRequest.t | nil,
     :sandbox_inputs => %{optional(String.t) => String.t},
-    :sandbox_release_id => String.t | nil,
     :terraform_version => String.t
   }
 

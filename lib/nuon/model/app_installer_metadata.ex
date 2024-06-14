@@ -33,7 +33,7 @@ defmodule Nuon.Model.AppInstallerMetadata do
     :community_url => String.t | nil,
     :copyright_markdown => String.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :demo_url => String.t | nil,
     :description => String.t | nil,
@@ -55,7 +55,7 @@ defmodule Nuon.Model.AppInstallerMetadata do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
   end
 end
 

@@ -20,10 +20,10 @@ defmodule Nuon.Api.Orgs do
 
   ### Returns
 
-  - `{:ok, Nuon.Model.AppUserOrg.t}` on success
+  - `{:ok, Nuon.Model.AppAccount.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec add_user(Tesla.Env.client, Nuon.Model.ServiceCreateOrgUserRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppUserOrg.t} | {:error, Tesla.Env.t}
+  @spec add_user(Tesla.Env.client, Nuon.Model.ServiceCreateOrgUserRequest.t, keyword()) :: {:ok, Nuon.Model.AppAccount.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
   def add_user(connection, service_create_org_user_request, _opts \\ []) do
     request =
       %{}
@@ -35,7 +35,7 @@ defmodule Nuon.Api.Orgs do
     connection
     |> Connection.request(request)
     |> evaluate_response([
-      {201, Nuon.Model.AppUserOrg},
+      {201, Nuon.Model.AppAccount},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},

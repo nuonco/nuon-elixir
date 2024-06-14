@@ -25,7 +25,7 @@ defmodule Nuon.Model.AppAppInputGroup do
     :app_input_id => String.t | nil,
     :app_inputs => [Nuon.Model.AppAppInput.t] | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :description => String.t | nil,
     :display_name => String.t | nil,
@@ -40,7 +40,7 @@ defmodule Nuon.Model.AppAppInputGroup do
   def decode(value) do
     value
      |> Deserializer.deserialize(:app_inputs, :list, Nuon.Model.AppAppInput)
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
   end
 end
 

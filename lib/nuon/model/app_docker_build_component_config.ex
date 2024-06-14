@@ -27,7 +27,7 @@ defmodule Nuon.Model.AppDockerBuildComponentConfig do
     :component_config_connection_id => String.t | nil,
     :connected_github_vcs_config => Nuon.Model.AppConnectedGithubVcsConfig.t | nil,
     :created_at => String.t | nil,
-    :created_by => Nuon.Model.AppUserToken.t | nil,
+    :created_by => Nuon.Model.AppAccount.t | nil,
     :created_by_id => String.t | nil,
     :dockerfile => String.t | nil,
     :env_vars => %{optional(String.t) => String.t} | nil,
@@ -42,7 +42,7 @@ defmodule Nuon.Model.AppDockerBuildComponentConfig do
   def decode(value) do
     value
      |> Deserializer.deserialize(:connected_github_vcs_config, :struct, Nuon.Model.AppConnectedGithubVcsConfig)
-     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppUserToken)
+     |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:public_git_vcs_config, :struct, Nuon.Model.AppPublicGitVcsConfig)
   end
 end
