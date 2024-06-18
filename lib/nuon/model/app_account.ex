@@ -13,7 +13,6 @@ defmodule Nuon.Model.AppAccount do
     :email,
     :id,
     :org_ids,
-    :orgs,
     :permissions,
     :roles,
     :subject,
@@ -26,7 +25,6 @@ defmodule Nuon.Model.AppAccount do
     :email => String.t | nil,
     :id => String.t | nil,
     :org_ids => [String.t] | nil,
-    :orgs => [Nuon.Model.AppOrg.t] | nil,
     :permissions => %{optional(String.t) => Nuon.Model.PermissionsPermission.t} | nil,
     :roles => [Nuon.Model.AppRole.t] | nil,
     :subject => String.t | nil,
@@ -38,7 +36,6 @@ defmodule Nuon.Model.AppAccount do
   def decode(value) do
     value
      |> Deserializer.deserialize(:account_type, :struct, Nuon.Model.AppAccountType)
-     |> Deserializer.deserialize(:orgs, :list, Nuon.Model.AppOrg)
      |> Deserializer.deserialize(:permissions, :map, Nuon.Model.PermissionsPermission)
      |> Deserializer.deserialize(:roles, :list, Nuon.Model.AppRole)
   end
