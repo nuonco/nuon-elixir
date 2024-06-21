@@ -10,6 +10,8 @@ defmodule Nuon.Model.AppAppSandboxConfig do
   defstruct [
     :app_id,
     :artifacts,
+    :aws_delegation_config,
+    :aws_region_type,
     :cloud_platform,
     :connected_github_vcs_config,
     :created_at,
@@ -26,6 +28,8 @@ defmodule Nuon.Model.AppAppSandboxConfig do
   @type t :: %__MODULE__{
     :app_id => String.t | nil,
     :artifacts => Nuon.Model.AppAppSandboxConfigArtifacts.t | nil,
+    :aws_delegation_config => Nuon.Model.AppAppAwsDelegationConfig.t | nil,
+    :aws_region_type => String.t | nil,
     :cloud_platform => Nuon.Model.AppCloudPlatform.t | nil,
     :connected_github_vcs_config => Nuon.Model.AppConnectedGithubVcsConfig.t | nil,
     :created_at => String.t | nil,
@@ -44,6 +48,7 @@ defmodule Nuon.Model.AppAppSandboxConfig do
   def decode(value) do
     value
      |> Deserializer.deserialize(:artifacts, :struct, Nuon.Model.AppAppSandboxConfigArtifacts)
+     |> Deserializer.deserialize(:aws_delegation_config, :struct, Nuon.Model.AppAppAwsDelegationConfig)
      |> Deserializer.deserialize(:cloud_platform, :struct, Nuon.Model.AppCloudPlatform)
      |> Deserializer.deserialize(:connected_github_vcs_config, :struct, Nuon.Model.AppConnectedGithubVcsConfig)
      |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
