@@ -16,6 +16,7 @@ lib/nuon/deserializer.ex
 lib/nuon/model/app_account.ex
 lib/nuon/model/app_account_type.ex
 lib/nuon/model/app_app.ex
+lib/nuon/model/app_app_aws_delegation_config.ex
 lib/nuon/model/app_app_config.ex
 lib/nuon/model/app_app_config_fmt.ex
 lib/nuon/model/app_app_config_status.ex
