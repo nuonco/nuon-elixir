@@ -15,7 +15,7 @@ defmodule Nuon.Model.ServiceUpdateInstallerRequest do
 
   @type t :: %__MODULE__{
     :app_ids => [String.t],
-    :metadata => Nuon.Model.ServiceCreateInstallerRequestMetadata.t | nil,
+    :metadata => Nuon.Model.ServiceUpdateInstallerRequestMetadata.t | nil,
     :name => String.t
   }
 
@@ -23,7 +23,7 @@ defmodule Nuon.Model.ServiceUpdateInstallerRequest do
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:metadata, :struct, Nuon.Model.ServiceCreateInstallerRequestMetadata)
+     |> Deserializer.deserialize(:metadata, :struct, Nuon.Model.ServiceUpdateInstallerRequestMetadata)
   end
 end
 

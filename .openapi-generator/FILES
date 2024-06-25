@@ -119,6 +119,7 @@ lib/nuon/model/service_update_app_request.ex
 lib/nuon/model/service_update_component_request.ex
 lib/nuon/model/service_update_install_request.ex
 lib/nuon/model/service_update_installer_request.ex
+lib/nuon/model/service_update_installer_request_metadata.ex
 lib/nuon/model/service_update_org_request.ex
 lib/nuon/model/statsd_event.ex
 lib/nuon/model/statsd_event_alert_type.ex
