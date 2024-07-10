@@ -25,6 +25,7 @@ defmodule Nuon.Model.AppInstallerMetadata do
     :installer_id,
     :logo_url,
     :name,
+    :og_image_url,
     :post_install_markdown,
     :updated_at
   ]
@@ -47,6 +48,7 @@ defmodule Nuon.Model.AppInstallerMetadata do
     :installer_id => String.t | nil,
     :logo_url => String.t | nil,
     :name => String.t | nil,
+    :og_image_url => String.t | nil,
     :post_install_markdown => String.t | nil,
     :updated_at => String.t | nil
   }

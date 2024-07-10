@@ -18,6 +18,7 @@ defmodule Nuon.Model.ServiceUpdateInstallerRequestMetadata do
     :github_url,
     :homepage_url,
     :logo_url,
+    :og_image_url,
     :post_install_markdown
   ]
 
@@ -32,6 +33,7 @@ defmodule Nuon.Model.ServiceUpdateInstallerRequestMetadata do
     :github_url => String.t,
     :homepage_url => String.t,
     :logo_url => String.t,
+    :og_image_url => String.t | nil,
     :post_install_markdown => String.t | nil
   }
 
