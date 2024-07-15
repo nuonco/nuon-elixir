@@ -745,6 +745,43 @@ defmodule Nuon.Api.Apps do
   end
 
   @doc """
+  updates an app config sync status
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `app_config_id` (String.t): app config ID
+  - `service_set_app_config_status_request` (ServiceSetAppConfigStatusRequest): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, boolean()}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec set_app_config_status(Tesla.Env.client, String.t, String.t, Nuon.Model.ServiceSetAppConfigStatusRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, boolean()} | {:error, Tesla.Env.t}
+  def set_app_config_status(connection, app_id, app_config_id, service_set_app_config_status_request, _opts \\ []) do
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v1/apps/#{app_id}/config/#{app_config_id}/set-status")
+      |> add_param(:body, :body, service_set_app_config_status_request)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, false},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   update an app
 
   ### Parameters
