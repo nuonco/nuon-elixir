@@ -51,7 +51,7 @@ defmodule Nuon.Api.Apps do
 
   - `connection` (Nuon.Connection): Connection to server
   - `app_id` (String.t): app ID
-  - `service_create_app_config_request` (ServiceCreateAppConfigRequest): Input
+  - `body` (map()): Input
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -59,13 +59,13 @@ defmodule Nuon.Api.Apps do
   - `{:ok, Nuon.Model.AppAppConfig.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec create_app_config(Tesla.Env.client, String.t, Nuon.Model.ServiceCreateAppConfigRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppConfig.t} | {:error, Tesla.Env.t}
-  def create_app_config(connection, app_id, service_create_app_config_request, _opts \\ []) do
+  @spec create_app_config(Tesla.Env.client, String.t, %{optional(String.t) => }, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppConfig.t} | {:error, Tesla.Env.t}
+  def create_app_config(connection, app_id, body, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/v1/apps/#{app_id}/config")
-      |> add_param(:body, :body, service_create_app_config_request)
+      |> add_param(:body, :body, body)
       |> Enum.into([])
 
     connection
@@ -745,43 +745,6 @@ defmodule Nuon.Api.Apps do
   end
 
   @doc """
-  updates an app config sync status
-
-  ### Parameters
-
-  - `connection` (Nuon.Connection): Connection to server
-  - `app_id` (String.t): app ID
-  - `app_config_id` (String.t): app config ID
-  - `service_set_app_config_status_request` (ServiceSetAppConfigStatusRequest): Input
-  - `opts` (keyword): Optional parameters
-
-  ### Returns
-
-  - `{:ok, boolean()}` on success
-  - `{:error, Tesla.Env.t}` on failure
-  """
-  @spec set_app_config_status(Tesla.Env.client, String.t, String.t, Nuon.Model.ServiceSetAppConfigStatusRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, boolean()} | {:error, Tesla.Env.t}
-  def set_app_config_status(connection, app_id, app_config_id, service_set_app_config_status_request, _opts \\ []) do
-    request =
-      %{}
-      |> method(:post)
-      |> url("/v1/apps/#{app_id}/config/#{app_config_id}/set-status")
-      |> add_param(:body, :body, service_set_app_config_status_request)
-      |> Enum.into([])
-
-    connection
-    |> Connection.request(request)
-    |> evaluate_response([
-      {200, false},
-      {400, Nuon.Model.StderrErrResponse},
-      {401, Nuon.Model.StderrErrResponse},
-      {403, Nuon.Model.StderrErrResponse},
-      {404, Nuon.Model.StderrErrResponse},
-      {500, Nuon.Model.StderrErrResponse}
-    ])
-  end
-
-  @doc """
   update an app
 
   ### Parameters
@@ -809,6 +772,43 @@ defmodule Nuon.Api.Apps do
     |> Connection.request(request)
     |> evaluate_response([
       {200, Nuon.Model.AppApp},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
+  Update an app config, setting status and state. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `app_config_id` (String.t): app config ID
+  - `service_update_app_config_request` (ServiceUpdateAppConfigRequest): Input
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppAppConfig.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec update_app_config(Tesla.Env.client, String.t, String.t, Nuon.Model.ServiceUpdateAppConfigRequest.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppAppConfig.t} | {:error, Tesla.Env.t}
+  def update_app_config(connection, app_id, app_config_id, service_update_app_config_request, _opts \\ []) do
+    request =
+      %{}
+      |> method(:patch)
+      |> url("/v1/apps/#{app_id}/config/#{app_config_id}")
+      |> add_param(:body, :body, service_update_app_config_request)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {201, Nuon.Model.AppAppConfig},
       {400, Nuon.Model.StderrErrResponse},
       {401, Nuon.Model.StderrErrResponse},
       {403, Nuon.Model.StderrErrResponse},

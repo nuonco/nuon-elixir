@@ -19,6 +19,7 @@ defmodule Nuon.Model.AppComponent do
     :resolved_var_name,
     :status,
     :status_description,
+    :type,
     :updated_at,
     :var_name
   ]
@@ -35,6 +36,7 @@ defmodule Nuon.Model.AppComponent do
     :resolved_var_name => String.t | nil,
     :status => String.t | nil,
     :status_description => String.t | nil,
+    :type => Nuon.Model.AppComponentType.t | nil,
     :updated_at => String.t | nil,
     :var_name => String.t | nil
   }
@@ -44,6 +46,7 @@ defmodule Nuon.Model.AppComponent do
   def decode(value) do
     value
      |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
+     |> Deserializer.deserialize(:type, :struct, Nuon.Model.AppComponentType)
   end
 end
 

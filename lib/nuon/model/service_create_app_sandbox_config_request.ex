@@ -8,6 +8,7 @@ defmodule Nuon.Model.ServiceCreateAppSandboxConfigRequest do
 
   @derive Jason.Encoder
   defstruct [
+    :aws_delegation_iam_role_arn,
     :connected_github_vcs_config,
     :public_git_vcs_config,
     :sandbox_inputs,
@@ -15,6 +16,7 @@ defmodule Nuon.Model.ServiceCreateAppSandboxConfigRequest do
   ]
 
   @type t :: %__MODULE__{
+    :aws_delegation_iam_role_arn => String.t | nil,
     :connected_github_vcs_config => Nuon.Model.ServiceConnectedGithubVcsSandboxConfigRequest.t | nil,
     :public_git_vcs_config => Nuon.Model.ServicePublicGitVcsSandboxConfigRequest.t | nil,
     :sandbox_inputs => %{optional(String.t) => String.t},
