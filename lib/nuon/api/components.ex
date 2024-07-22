@@ -296,6 +296,42 @@ defmodule Nuon.Api.Components do
   end
 
   @doc """
+  get a components for a specific app
+  Return an app component by id or name. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `app_id` (String.t): app ID
+  - `component_name_or_id` (String.t): name or ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppComponent.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_app_component(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, Nuon.Model.AppComponent.t} | {:error, Tesla.Env.t}
+  def get_app_component(connection, app_id, component_name_or_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/apps/#{app_id}/component/#{component_name_or_id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppComponent},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get all components for an app
 
   ### Parameters
