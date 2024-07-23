@@ -8,7 +8,6 @@ defmodule Nuon.Model.AppAppAwsDelegationConfig do
 
   @derive Jason.Encoder
   defstruct [
-    :access_key_id,
     :app_sandbox_config_id,
     :created_at,
     :created_by,
@@ -16,12 +15,10 @@ defmodule Nuon.Model.AppAppAwsDelegationConfig do
     :iam_role_arn,
     :id,
     :org_id,
-    :secret_access_key,
     :updated_at
   ]
 
   @type t :: %__MODULE__{
-    :access_key_id => String.t | nil,
     :app_sandbox_config_id => String.t | nil,
     :created_at => String.t | nil,
     :created_by => Nuon.Model.AppAccount.t | nil,
@@ -29,7 +26,6 @@ defmodule Nuon.Model.AppAppAwsDelegationConfig do
     :iam_role_arn => String.t | nil,
     :id => String.t | nil,
     :org_id => String.t | nil,
-    :secret_access_key => String.t | nil,
     :updated_at => String.t | nil
   }
 
