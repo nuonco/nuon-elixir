@@ -78,6 +78,48 @@ defmodule Nuon.Api.General do
   end
 
   @doc """
+  Get jsonschema for config file
+  Return jsonschemas for Nuon configs. These can be used in frontmatter in most editors that have a TOML LSP (such as [Taplo](https://taplo.tamasfe.dev/) configured.  ```toml #:schema https://api.nuon.co/v1/general/config-schema?source=input  description = \"description\" ```  You can pass in a valid source argument to render within a specific source file:  - input - installer - sandbox - runner - docker_build - container_image - helm - terraform - job  By default, the config expects that you are using multiple files and sources. If you are _not_, then pass the `?flat=true` param. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:source` (String.t): return a schema for a source file
+    - `:flat` (String.t): return a flat schema for the full app
+
+  ### Returns
+
+  - `{:ok, map()}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_config_schema(Tesla.Env.client, keyword()) :: {:ok, map()} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def get_config_schema(connection, opts \\ []) do
+    optional_params = %{
+      :source => :query,
+      :flat => :query
+    }
+
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/general/config-schema")
+      |> add_optional_params(optional_params, opts)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, %{}},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   Get current user
 
   ### Parameters
