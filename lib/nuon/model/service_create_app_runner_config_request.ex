@@ -14,7 +14,7 @@ defmodule Nuon.Model.ServiceCreateAppRunnerConfigRequest do
 
   @type t :: %__MODULE__{
     :env_vars => %{optional(String.t) => String.t} | nil,
-    :type => Nuon.Model.AppAppRunnerType.t | nil
+    :type => Nuon.Model.AppAppRunnerType.t
   }
 
   alias Nuon.Deserializer
