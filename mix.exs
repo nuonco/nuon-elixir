@@ -4,7 +4,7 @@ defmodule Nuon.Mixfile do
   def project do
     [
       app: :nuon,
-      version: "0.19.205",
+      version: "0.19.206",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
