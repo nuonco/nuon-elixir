@@ -18,6 +18,7 @@ defmodule Nuon.Model.AppComponentConfigConnection do
     :id,
     :job,
     :terraform_module,
+    :type,
     :updated_at,
     :version
   ]
@@ -33,6 +34,7 @@ defmodule Nuon.Model.AppComponentConfigConnection do
     :id => String.t | nil,
     :job => Nuon.Model.AppJobComponentConfig.t | nil,
     :terraform_module => Nuon.Model.AppTerraformModuleComponentConfig.t | nil,
+    :type => Nuon.Model.AppComponentType.t | nil,
     :updated_at => String.t | nil,
     :version => integer() | nil
   }
@@ -47,6 +49,7 @@ defmodule Nuon.Model.AppComponentConfigConnection do
      |> Deserializer.deserialize(:helm, :struct, Nuon.Model.AppHelmComponentConfig)
      |> Deserializer.deserialize(:job, :struct, Nuon.Model.AppJobComponentConfig)
      |> Deserializer.deserialize(:terraform_module, :struct, Nuon.Model.AppTerraformModuleComponentConfig)
+     |> Deserializer.deserialize(:type, :struct, Nuon.Model.AppComponentType)
   end
 end
 

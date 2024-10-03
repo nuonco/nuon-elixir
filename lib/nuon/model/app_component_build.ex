@@ -19,6 +19,7 @@ defmodule Nuon.Model.AppComponentBuild do
     :id,
     :install_deploys,
     :releases,
+    :runner_job,
     :status,
     :status_description,
     :updated_at,
@@ -37,6 +38,7 @@ defmodule Nuon.Model.AppComponentBuild do
     :id => String.t | nil,
     :install_deploys => [Nuon.Model.AppInstallDeploy.t] | nil,
     :releases => [Nuon.Model.AppComponentRelease.t] | nil,
+    :runner_job => Nuon.Model.AppRunnerJob.t | nil,
     :status => String.t | nil,
     :status_description => String.t | nil,
     :updated_at => String.t | nil,
@@ -50,6 +52,7 @@ defmodule Nuon.Model.AppComponentBuild do
      |> Deserializer.deserialize(:created_by, :struct, Nuon.Model.AppAccount)
      |> Deserializer.deserialize(:install_deploys, :list, Nuon.Model.AppInstallDeploy)
      |> Deserializer.deserialize(:releases, :list, Nuon.Model.AppComponentRelease)
+     |> Deserializer.deserialize(:runner_job, :struct, Nuon.Model.AppRunnerJob)
      |> Deserializer.deserialize(:vcs_connection_commit, :struct, Nuon.Model.AppVcsConnectionCommit)
   end
 end

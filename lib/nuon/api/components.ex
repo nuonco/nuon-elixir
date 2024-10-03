@@ -618,6 +618,40 @@ defmodule Nuon.Api.Components do
   end
 
   @doc """
+  get a component's dependencies
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `component_id` (String.t): component ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, [%AppComponent{}, ...]}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_component_dependencies(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.StderrErrResponse.t} | {:ok, [Nuon.Model.AppComponent.t]} | {:error, Tesla.Env.t}
+  def get_component_dependencies(connection, component_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/components/#{component_id}/dependencies")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppComponent},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get latest build for a component
 
   ### Parameters
