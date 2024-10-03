@@ -745,6 +745,41 @@ defmodule Nuon.Api.Installs do
   end
 
   @doc """
+  Get an install's runner group
+  Return the runner group, including runners and settings for the provided install. 
+
+  ### Parameters
+
+  - `connection` (Nuon.Connection): Connection to server
+  - `install_id` (String.t): install ID
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, Nuon.Model.AppRunnerGroup.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_install_runner_group(Tesla.Env.client, String.t, keyword()) :: {:ok, Nuon.Model.AppRunnerGroup.t} | {:ok, Nuon.Model.StderrErrResponse.t} | {:error, Tesla.Env.t}
+  def get_install_runner_group(connection, install_id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/v1/installs/#{install_id}/runner-group")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, Nuon.Model.AppRunnerGroup},
+      {400, Nuon.Model.StderrErrResponse},
+      {401, Nuon.Model.StderrErrResponse},
+      {403, Nuon.Model.StderrErrResponse},
+      {404, Nuon.Model.StderrErrResponse},
+      {500, Nuon.Model.StderrErrResponse}
+    ])
+  end
+
+  @doc """
   get install sandbox run logs
 
   ### Parameters
